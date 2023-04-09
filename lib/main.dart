@@ -15,16 +15,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(390, 844),
-      builder: (context,child) {
-        return MaterialApp(
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home: const Splash(),
-          debugShowCheckedModeBanner: false,
-        );
-      }
-    );
+        designSize: const Size(390, 844),
+        builder: (context, child) {
+          return MaterialApp(
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: const Splash(),
+            debugShowCheckedModeBanner: false,
+          );
+        });
   }
 }
