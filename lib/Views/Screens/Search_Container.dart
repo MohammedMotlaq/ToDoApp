@@ -51,7 +51,7 @@ class _SearchContainerState extends State<SearchContainer> {
           ),
           SingleChildScrollView(
             child: SizedBox(
-              height: MediaQuery.of(context).size.height-180.h,
+              height: MediaQuery.of(context).size.height - 180.h,
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) => const TaskWidget(),

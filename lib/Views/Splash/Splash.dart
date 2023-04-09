@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:to_do_app/Views/Screens/SignIn_Screen.dart';
-import 'package:to_do_app/Views/Screens/SignUp_Screen.dart';
 
-import '../Screens/Main_Screen.dart';
+import '../Auth/SignIn_Screen.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);

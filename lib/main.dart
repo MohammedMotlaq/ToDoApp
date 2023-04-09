@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:to_do_app/Router/App_Router.dart';
 import 'package:to_do_app/Views/Splash/Splash.dart';
 
 import 'home.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         designSize: const Size(390, 844),
         builder: (context, child) {
           return MaterialApp(
+            navigatorKey: AppRouter.navKey,
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:to_do_app/Router/App_Router.dart';
+import 'package:to_do_app/Views/Auth/SignUp_Screen.dart';
+import 'package:to_do_app/Views/Screens/Main_Screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -93,7 +96,9 @@ class SignInScreen extends StatelessWidget {
                   height: 72.h,
                   width: 340.w,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      AppRouter.pushWithReplacment(MainScreen());
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: const StadiumBorder(),
                       backgroundColor: const Color.fromRGBO(255, 68, 68, 1),
@@ -116,7 +121,7 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Already have an account?",
+                      "Don't have an account?",
                       style: TextStyle(
                         fontSize: 18.sp,
                         color: Colors.black,
@@ -125,9 +130,11 @@ class SignInScreen extends StatelessWidget {
                     ),
                     InkWell(
                       //TODO: Navigate to SignUp Screen
-                      onTap: () {},
+                      onTap: () {
+                        AppRouter.pushWithReplacment(SignUpScreen());
+                      },
                       child: Text(
-                        " Sign In",
+                        " Sign Up",
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontFamily: 'Inter',

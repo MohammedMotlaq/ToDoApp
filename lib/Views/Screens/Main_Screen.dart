@@ -17,24 +17,27 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      resizeToAvoidBottomInset: false,
       body: bodyWidget,
-
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color.fromRGBO(196, 3, 3, 1.0),
         elevation: 0,
         highlightElevation: 0,
         onPressed: () {
-          showModalBottomSheet(context: context, builder: (context){
-            return Container(
-              width: 390.w,
-              height: 312.h,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(25.r),topRight: Radius.circular(25.r)),
-              ),
-            );
-          });
+          showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return Container(
+                  width: 390.w,
+                  height: 312.h,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25.r),
+                        topRight: Radius.circular(25.r)),
+                  ),
+                );
+              });
         },
         child: Container(
           height: 70.w,
@@ -47,15 +50,18 @@ class _MainScreenState extends State<MainScreen> {
                 color: Colors.redAccent.withOpacity(0.2),
                 spreadRadius: 3,
                 blurRadius: 3,
-                offset:const Offset(1, 6),
+                offset: const Offset(1, 6),
               ),
             ],
           ),
-          child: Icon(Icons.add,color: Colors.white,size: 32.sp,),
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+            size: 32.sp,
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         elevation: 0,
@@ -93,7 +99,7 @@ class _MainScreenState extends State<MainScreen> {
         selectedLabelStyle:
             TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
         backgroundColor: Colors.white,
-        selectedItemColor:const Color.fromRGBO(255, 68, 68, 0.5),
+        selectedItemColor: const Color.fromRGBO(255, 68, 68, 0.5),
         unselectedItemColor: Colors.grey,
       ),
     );

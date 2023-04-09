@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:to_do_app/Router/App_Router.dart';
+import 'package:to_do_app/Views/Auth/SignIn_Screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -175,7 +177,9 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     InkWell(
                       //TODO: Navigate to Login Screen
-                      onTap: () {},
+                      onTap: () {
+                        AppRouter.pushWithReplacment(SignInScreen());
+                      },
                       child: Text(
                         " Sign In",
                         style: TextStyle(
