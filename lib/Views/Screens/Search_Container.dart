@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/Views/Widgets/Task_Widget.dart';
 
@@ -24,8 +22,9 @@ class _SearchContainerState extends State<SearchContainer> {
               height: 60.h,
               margin: EdgeInsets.only(top: 30.h, bottom: 5.h),
               decoration: BoxDecoration(
-                  border: Border.all(color: Color.fromRGBO(217, 217, 217, 1)),
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  border:
+                      Border.all(color: const Color.fromRGBO(217, 217, 217, 1)),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.all(Radius.circular(8.r))),
               child: TextFormField(
                 decoration: InputDecoration(
@@ -55,7 +54,7 @@ class _SearchContainerState extends State<SearchContainer> {
               height: MediaQuery.of(context).size.height,
               child: ListView.builder(
                 itemCount: 10,
-                itemBuilder: (context, index) => TaskWidget(),
+                itemBuilder: (context, index) => const TaskWidget(),
               ),
             )
           ],

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TaskWidget extends StatefulWidget {
@@ -19,12 +17,12 @@ class _TaskWidgetState extends State<TaskWidget> {
       margin: EdgeInsets.only(top: 23.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
-        color: Color.fromRGBO(255, 68, 68, 1),
+        color: const Color.fromRGBO(255, 68, 68, 1),
       ),
       child: Row(
         children: [
           ImageIcon(
-            AssetImage("assets/icons/check-square.png"),
+            const AssetImage("assets/icons/check-square.png"),
             color: Colors.white,
             size: 35.h,
           ),
@@ -42,7 +40,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                     fontFamily: "Roboto",
                     color: Colors.white),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
                 "20 dollars for manga",
                 style: TextStyle(
@@ -50,12 +48,12 @@ class _TaskWidgetState extends State<TaskWidget> {
                     color: Colors.white,
                     fontWeight: FontWeight.w300),
               ),
-              Spacer()
+              const Spacer()
             ],
           ),
-          Spacer(),
+          const Spacer(),
           ImageIcon(
-            AssetImage("assets/icons/trash.png"),
+            const AssetImage("assets/icons/trash.png"),
             color: Colors.white,
             size: 35.h,
           )
