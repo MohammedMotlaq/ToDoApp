@@ -30,26 +30,29 @@ class _SearchContainerState extends State<SearchContainer> {
               child: TextFormField(
                 decoration: InputDecoration(
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
-                    prefixIcon: Icon(Icons.search),
+                        EdgeInsets.symmetric(vertical: 18.h, horizontal: 15.w),
+                    prefixIcon: const Icon(Icons.search),
                     border: InputBorder.none,
                     hintText: "Search",
                     hintStyle: TextStyle(
                         fontSize: 17.sp,
                         color: const Color.fromRGBO(158, 158, 158, 1),
                         fontFamily: "Inter"),
-                    suffix: SizedBox(
-                      width: 24.w,
-                      height: 24.h,
-                      child: Image.asset(
-                        "assets/icons/clear.png",
-                        fit: BoxFit.fill,
+                    suffixIcon: Transform.scale(
+                      scale: .5,
+                      child: SizedBox(
+                        width: 24.w,
+                        height: 24.h,
+                        child: Image.asset(
+                          "assets/icons/clear.png",
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     )),
               ),
             ),
             SizedBox(
-              height: 665.h,
+              height: MediaQuery.of(context).size.height,
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) => TaskWidget(),
