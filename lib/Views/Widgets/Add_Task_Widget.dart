@@ -38,7 +38,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
             height: 6.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.r),
-              color: Color.fromRGBO(121, 121, 121, 1),
+              color: const Color.fromRGBO(121, 121, 121, 1),
             ),
           ),
           SizedBox(
@@ -55,7 +55,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                     style: TextStyle(
                         fontFamily: "inter",
                         fontSize: 15.sp,
-                        color: Color.fromRGBO(82, 82, 92, 1)),
+                        color: const Color.fromRGBO(82, 82, 92, 1)),
                   ),
                   SizedBox(
                     height: 11.77.h,
@@ -90,7 +90,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                     style: TextStyle(
                         fontFamily: "inter",
                         fontSize: 15.sp,
-                        color: Color.fromRGBO(82, 82, 92, 1)),
+                        color: const Color.fromRGBO(82, 82, 92, 1)),
                   ),
                   SizedBox(
                     height: 11.85.h,
