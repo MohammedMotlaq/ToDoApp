@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/Views/Widgets/Task_Widget.dart';
+import 'package:to_do_app/colors/Colors.dart';
 
 class SearchContainer extends StatefulWidget {
   const SearchContainer({super.key});
@@ -23,7 +24,7 @@ class _SearchContainerState extends State<SearchContainer> {
             decoration: BoxDecoration(
                 border:
                     Border.all(color: const Color.fromRGBO(217, 217, 217, 1)),
-                color: const Color.fromARGB(255, 255, 255, 255),
+                color: appTheme['backgroundColor'],
                 borderRadius: BorderRadius.all(Radius.circular(8.r))),
             child: TextFormField(
               decoration: InputDecoration(
