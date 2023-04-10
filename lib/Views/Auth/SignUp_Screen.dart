@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/Router/App_Router.dart';
 import 'package:to_do_app/Views/Auth/SignIn_Screen.dart';
 
+import '../../colors/Colors.dart';
+
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
@@ -32,6 +34,7 @@ class SignUpScreen extends StatelessWidget {
                 Text(
                   "Welcome User!",
                   style: TextStyle(
+                      color: appTheme['text'],
                       fontFamily: 'Poppins',
                       fontSize: 18.sp,
                       fontWeight: FontWeight.bold),
@@ -42,6 +45,7 @@ class SignUpScreen extends StatelessWidget {
                 Text(
                   "Lets Get Signup to add tasks",
                   style: TextStyle(
+                    color: appTheme['text'],
                     fontFamily: 'Poppins',
                     fontSize: 18.sp,
                   ),
@@ -60,13 +64,13 @@ class SignUpScreen extends StatelessWidget {
                   width: 343.w,
                   height: 60.h,
                   decoration: BoxDecoration(
-                      color: const Color.fromRGBO(255, 68, 68, 0.25),
+                      color: appTheme['textInputs'],
                       borderRadius: BorderRadius.circular(20)),
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: "Enter your full name",
                       labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: appTheme['hintText'],
                         fontSize: 18.sp,
                       ),
                       enabledBorder: const UnderlineInputBorder(
@@ -81,13 +85,13 @@ class SignUpScreen extends StatelessWidget {
                   width: 343.w,
                   height: 60.h,
                   decoration: BoxDecoration(
-                      color: const Color.fromRGBO(255, 68, 68, 0.25),
+                      color: appTheme['textInputs'],
                       borderRadius: BorderRadius.circular(20)),
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: "Enter your Email",
                       labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: appTheme['hintText'],
                         fontSize: 18.sp,
                       ),
                       enabledBorder: const UnderlineInputBorder(
