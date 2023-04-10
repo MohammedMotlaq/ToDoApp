@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/Views/Screens/Search_Container.dart';
 import 'package:to_do_app/Views/Widgets/Add_Task_Widget.dart';
+import 'package:to_do_app/colors/Colors.dart';
 
 import 'Home_Screen.dart';
 
@@ -18,10 +19,11 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: appTheme['backgroundColor'],
       resizeToAvoidBottomInset: false,
       body: bodyWidget,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromRGBO(196, 3, 3, 1.0),
+        backgroundColor: appTheme['addTaskButton'],
         elevation: 0,
         highlightElevation: 0,
         onPressed: () {
@@ -96,9 +98,9 @@ class _MainScreenState extends State<MainScreen> {
         ],
         selectedLabelStyle:
             TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
-        backgroundColor: Colors.white,
-        selectedItemColor: const Color.fromRGBO(255, 68, 68, 0.5),
-        unselectedItemColor: Colors.grey,
+        backgroundColor: appTheme['backgroundColor'],
+        selectedItemColor: appTheme['selectedColor'],
+        unselectedItemColor: appTheme['unselectedColor'],
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../colors/Colors.dart';
+
 class GridTaskWidget extends StatefulWidget {
   const GridTaskWidget({super.key});
 
@@ -13,12 +15,12 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
   Widget build(BuildContext context) {
     return Container(
       // padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 11.w),
-      padding: EdgeInsets.only(top: 21.h, bottom: 7.h,left:9.w ,right:12 ),
+      padding: EdgeInsets.only(top: 21.h, bottom: 7.h, left: 9.w, right: 12),
 
       margin: EdgeInsets.only(top: 23.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
-        color: const Color.fromRGBO(255, 68, 68, 1),
+        color: appTheme['taskCartBackground'],
       ),
       child: Column(
         children: [

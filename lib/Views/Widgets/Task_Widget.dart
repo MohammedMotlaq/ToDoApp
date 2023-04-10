@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../colors/Colors.dart';
+
 class TaskWidget extends StatefulWidget {
   const TaskWidget({super.key});
 
@@ -17,7 +19,7 @@ class _TaskWidgetState extends State<TaskWidget> {
       margin: EdgeInsets.only(top: 23.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
-        color: const Color.fromRGBO(255, 68, 68, 1),
+        color: appTheme['taskCartBackground'],
       ),
       child: Row(
         children: [

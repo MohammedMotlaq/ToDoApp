@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Map<String, Color> appTheme = lightColors;
+Map<String, Color> appTheme = DarkColors;
 
 Map<String, Color> lightColors = {
   "backgroundColor": Color(0xFFFFFFFF),
@@ -9,7 +9,7 @@ Map<String, Color> lightColors = {
   "buttonColor": Color(0xFFFF4444),
   "hintText": Color(0xfF000000),
   "taskCartBackground": Color(0xFFFF4444),
-  "addTaskButton": Color(0xACFF0000),
+  "addTaskButton": Color(0x85FF0000),
   "selectedColor": Color(0xFFFF4444),
   "unselectedColor": Color(0xFF000000)
 };
@@ -23,5 +23,5 @@ Map<String, Color> DarkColors = {
   "taskCartBackground": Color(0xFF2B2727),
   "addTaskButton": Color(0xffBF0000),
   "selectedColor": Color(0xFFFF0000),
-  "unselectedColor": Color.fromRGBO(0, 0, 0, 1)
+  "unselectedColor": Color.fromARGB(255, 255, 255, 255)
 };

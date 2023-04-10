@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:to_do_app/colors/Colors.dart';
 
 import '../Auth/SignIn_Screen.dart';
 
@@ -27,7 +28,7 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        color: const Color.fromRGBO(219, 35, 35, 1.0),
+        color: appTheme['backgroundColor'],
         width: 390.w,
         height: 844.h,
         child: Column(
@@ -38,14 +39,14 @@ class _SplashState extends State<Splash> {
             Text(
               "My Tasks",
               style: TextStyle(
-                  color: Colors.white,
+                  color: appTheme['text'],
                   fontSize: 32.sp,
                   fontWeight: FontWeight.bold),
             ),
             Text(
               "مهامي",
               style: TextStyle(
-                  color: Colors.white,
+                  color: appTheme['text'],
                   fontSize: 32.sp,
                   fontWeight: FontWeight.bold),
             ),
@@ -79,7 +80,7 @@ class _SplashState extends State<Splash> {
               height: 100.h,
               child: Text(
                 "Have a Nice Day 👋😍",
-                style: TextStyle(color: Colors.white70, fontSize: 25.sp),
+                style: TextStyle(color: appTheme['text'], fontSize: 25.sp),
               ),
             ),
           ],

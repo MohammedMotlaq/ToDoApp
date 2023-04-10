@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/Views/Widgets/Grid_Tasks_Widget.dart';
 import 'package:to_do_app/Views/Widgets/Task_Widget.dart';
+import 'package:to_do_app/colors/Colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: appTheme['backgroundColor'],
       padding: EdgeInsets.only(top: 34.h, left: 24.w, right: 24.w),
       child: Column(
         children: [
@@ -29,13 +30,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   },
                   icon: grid
-                      ? const Icon(
+                      ? Icon(
                           Icons.grid_view_rounded,
-                          color: Color.fromRGBO(255, 68, 68, 1),
+                          color: appTheme["text"],
                         )
-                      : const Icon(
+                      : Icon(
                           Icons.list,
-                          color: Color.fromRGBO(255, 68, 68, 1),
+                          color: appTheme["text"],
                         )),
               SizedBox(
                 width: 35.w,
@@ -64,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {},
                   icon: Icon(
                     Icons.dark_mode_outlined,
-                    color: const Color.fromRGBO(255, 68, 68, 0.7),
+                    color: appTheme['text'],
                     size: 32.sp,
                   )),
             ],
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text(
               "Whats on your mind?",
               style: TextStyle(
-                color: const Color.fromRGBO(255, 68, 68, 0.8),
+                color: appTheme['text'],
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w600,
                 fontFamily: "Roboto",

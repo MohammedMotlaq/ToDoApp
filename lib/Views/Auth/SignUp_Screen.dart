@@ -11,6 +11,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: appTheme['backgroundColor'],
       body: SingleChildScrollView(
         child: Stack(children: [
           Container(
@@ -106,13 +107,13 @@ class SignUpScreen extends StatelessWidget {
                   width: 343.w,
                   height: 60.h,
                   decoration: BoxDecoration(
-                      color: const Color.fromRGBO(255, 68, 68, 0.25),
+                      color: appTheme['textInputs'],
                       borderRadius: BorderRadius.circular(20)),
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: "Enter your Password",
                       labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: appTheme['hintText'],
                         fontSize: 18.sp,
                       ),
                       enabledBorder: const UnderlineInputBorder(
@@ -127,13 +128,13 @@ class SignUpScreen extends StatelessWidget {
                   width: 343.w,
                   height: 60.h,
                   decoration: BoxDecoration(
-                      color: const Color.fromRGBO(255, 68, 68, 0.25),
+                      color: appTheme['textInputs'],
                       borderRadius: BorderRadius.circular(20)),
                   child: TextFormField(
                     decoration: InputDecoration(
                       labelText: "Confirm Password",
                       labelStyle: TextStyle(
-                        color: Colors.black,
+                        color: appTheme['hintText'],
                         fontSize: 18.sp,
                       ),
                       enabledBorder: const UnderlineInputBorder(
@@ -152,7 +153,7 @@ class SignUpScreen extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       shape: const StadiumBorder(),
-                      backgroundColor: const Color.fromRGBO(255, 68, 68, 1),
+                      backgroundColor: appTheme['buttonColor'],
                     ),
                     child: Text(
                       "SignUp",
@@ -175,7 +176,7 @@ class SignUpScreen extends StatelessWidget {
                       "Already have an account?",
                       style: TextStyle(
                         fontSize: 18.sp,
-                        color: Colors.black,
+                        color: appTheme['text'],
                         fontFamily: 'Inter',
                       ),
                     ),
@@ -189,7 +190,7 @@ class SignUpScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontFamily: 'Inter',
-                          color: const Color.fromARGB(255, 207, 39, 39),
+                          color: appTheme['buttonColor'],
                         ),
                       ),
                     ),
