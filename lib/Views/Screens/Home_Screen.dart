@@ -37,11 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: grid
                         ? Icon(
                             Icons.grid_view_rounded,
-                            color: UIprovider.theme["text"],
+                            color: UIprovider.theme["someText"],
                           )
                         : Icon(
                             Icons.list,
-                            color: UIprovider.theme["text"],
+                            color: UIprovider.theme["someText"],
                           )),
                 SizedBox(
                   width: 35.w,
@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text(
                 "Whats on your mind?",
                 style: TextStyle(
-                  color: UIprovider.theme['text'],
+                  color: UIprovider.theme['someText'],
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w600,
                   fontFamily: "Roboto",

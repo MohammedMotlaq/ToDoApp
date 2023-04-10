@@ -7,9 +7,10 @@ Map<String, Color> lightColors = {
   "buttonColor": Color(0xFFFF4444),
   "hintText": Color(0xfF000000),
   "taskCartBackground": Color(0xFFFF4444),
-  "addTaskButton": Color(0x85FF0000),
+  "addTaskButton": Color.fromARGB(255, 255, 0, 0),
   "selectedColor": Color(0xFFFF4444),
   "unselectedColor": Color(0xFF000000),
+  "someText": Color(0xFFFF4444),
 };
 
 Map<String, Color> DarkColors = {
@@ -22,4 +23,5 @@ Map<String, Color> DarkColors = {
   "addTaskButton": Color(0xffBF0000),
   "selectedColor": Color(0xFFFF0000),
   "unselectedColor": Color.fromARGB(255, 255, 255, 255),
+  "someText": Color(0xFFFFFFFF),
 };
