@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/Views/Screens/Search_Container.dart';
+import 'package:to_do_app/Views/Widgets/Add_Task_Widget.dart';
 
 import 'Home_Screen.dart';
 
@@ -25,19 +26,16 @@ class _MainScreenState extends State<MainScreen> {
         highlightElevation: 0,
         onPressed: () {
           showModalBottomSheet(
-              context: context,
-              builder: (context) {
-                return Container(
-                  width: 390.w,
-                  height: 312.h,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(25.r),
-                        topRight: Radius.circular(25.r)),
-                  ),
-                );
-              });
+            context: context,
+            builder: (context) {
+              return AddTaskWidget();
+            },
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25.r),
+              topRight: Radius.circular(25.r),
+            )),
+          );
         },
         child: Container(
           height: 70.w,
