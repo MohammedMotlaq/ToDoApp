@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SingleChildScrollView(
               child: SizedBox(
-                  height: MediaQuery.of(context).size.height - 225.h,
+                  height: MediaQuery.of(context).size.height - 230.h,
                   child: grid
                       ? ListView.builder(
                           padding: EdgeInsets.zero,
