@@ -7,10 +7,10 @@ class UIProvider extends ChangeNotifier {
   IconData themeIcon =
       SPHelper.getIsDark() ? Icons.dark_mode_rounded : Icons.dark_mode_outlined;
   changeTheme() {
+    SPHelper.changeIsDark();
     bool isDark = SPHelper.getIsDark();
     theme = isDark ? DarkColors : lightColors;
     themeIcon = isDark ? Icons.dark_mode_rounded : Icons.dark_mode_outlined;
-    SPHelper.changeIsDark();
     notifyListeners();
   }
 }
