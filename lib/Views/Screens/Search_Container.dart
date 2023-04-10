@@ -14,7 +14,7 @@ class _SearchContainerState extends State<SearchContainer> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.fromLTRB(15.w, 18.h, 15.w, 0),
+      padding: EdgeInsets.fromLTRB(24.w, 18.h, 24.w, 0),
       child: Column(
         children: [
           Container(
