@@ -1,15 +1,27 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:lottie/lottie.dart';
 import 'package:to_do_app/Providers/auth_provider.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class NoInternetPage extends StatelessWidget {
   const NoInternetPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // void _doSomething() async {
+    //   Timer(
+    //     Duration(seconds: 3),
+    //     () {
+    //       _btnController.success();
+    //     },
+    //   );
+    // }
+
     return Scaffold(
       body: Consumer2<UIProvider, AuthProvider>(
           builder: (context, UIprovider, AuthProvider, x) {
@@ -44,26 +56,21 @@ class NoInternetPage extends StatelessWidget {
               SizedBox(
                 height: 30.h,
               ),
-              SizedBox(
+              RoundedLoadingButton(
+                color: UIprovider.theme["buttonColor"],
+                valueColor: UIprovider.theme["text"]!,
                 height: 72.h,
                 width: 340.w,
-                child: ElevatedButton(
-                  onPressed: () {
-                    AuthProvider.checkInternetConnection();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(),
-                    backgroundColor: UIprovider.theme["buttonColor"],
-                  ),
-                  child: Text(
-                    "Retry",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        fontSize: 18.sp,
-                        color: Colors.white,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600),
-                  ),
+                controller: AuthProvider.btnController,
+                onPressed: () => AuthProvider.checkInternetConnection(),
+                child: Text(
+                  "Retry",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      color: Colors.white,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ],
