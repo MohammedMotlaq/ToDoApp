@@ -16,6 +16,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool grid = true;
+  int selectedIndex=-1;
+  changeSelectedIndex(index){
+    selectedIndex=index;
+    setState(() {
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ? ListView.builder(
                           padding: EdgeInsets.zero,
                           itemCount: 10,
-                          itemBuilder: (context, index) => const TaskWidget(),
+                          itemBuilder: (context, index) =>  TaskWidget(index: index,selectedIndex: selectedIndex,changeSelectedIndex: changeSelectedIndex,),
                         )
                       : GridView.builder(
                           padding: EdgeInsets.zero,

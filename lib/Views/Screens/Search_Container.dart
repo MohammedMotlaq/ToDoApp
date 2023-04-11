@@ -37,7 +37,7 @@ class _SearchContainerState extends State<SearchContainer> {
                         EdgeInsets.symmetric(vertical: 18.h, horizontal: 15.w),
                     prefixIcon: Icon(
                       Icons.search,
-                      color: UIprovider.theme['text'],
+                      color: UIprovider.theme['iconsColor'],
                     ),
                     enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: const Color.fromRGBO(217, 217, 217, 1))),
                     hintText: "Search",
@@ -64,7 +64,7 @@ class _SearchContainerState extends State<SearchContainer> {
                 child: ListView.builder(
                   padding: EdgeInsets.zero,
                   itemCount: 10,
-                  itemBuilder: (context, index) => const TaskWidget(),
+                  itemBuilder: (context, index) =>  TaskWidget(index: index,selectedIndex: -1,changeSelectedIndex: ()=>{},),
                 ),
               ),
             )

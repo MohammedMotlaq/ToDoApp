@@ -11,6 +11,7 @@ Map<String, Color> lightColors = {
   "selectedColor": const Color(0xFFFF4444),
   "unselectedColor": const Color(0xFF000000),
   "someText": const Color(0xFFFF4444),
+  "iconsColor":const Color(0xFFD1CDCD)
 };
 
 Map<String, Color> DarkColors = {
@@ -24,4 +25,6 @@ Map<String, Color> DarkColors = {
   "selectedColor": const Color(0xFFFF0000),
   "unselectedColor": const Color.fromARGB(255, 255, 255, 255),
   "someText": const Color(0xFFFFFFFF),
+  "iconsColor":const Color(0xFFBBB6B6)
+
 };
