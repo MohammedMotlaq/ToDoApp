@@ -17,13 +17,13 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int index = 0;
+  bool _isBottomSheetVisible = false;
   Widget bodyWidget = HomeScreen();
   @override
   Widget build(BuildContext context) {
     return Consumer<UIProvider>(builder: (context, UIprovider, x) {
       return Scaffold(
         backgroundColor: UIprovider.theme['backgroundColor'],
-        resizeToAvoidBottomInset: false,
         body: bodyWidget,
         floatingActionButton: FloatingActionButton(
           backgroundColor: UIprovider.theme['addTaskButton'],
@@ -31,10 +31,13 @@ class _MainScreenState extends State<MainScreen> {
           highlightElevation: 0,
           onPressed: () {
             showModalBottomSheet(
+              isScrollControlled: true,
               context: context,
-              builder: (context) {
-                return AddTaskWidget();
-              },
+              builder: (context) => Padding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child:const AddTaskWidget(),
+              ),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(25.r),
