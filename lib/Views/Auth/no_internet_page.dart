@@ -22,61 +22,63 @@ class NoInternetPage extends StatelessWidget {
     //   );
     // }
 
-    return Scaffold(
-      body: Consumer2<UIProvider, AuthProvider>(
-          builder: (context, UIprovider, AuthProvider, x) {
-        return Container(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          height: 844.h,
-          width: 390.w,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Lottie.asset('assets/lottie/light-no-internet.json'),
-              Text(
-                "Oops!",
-                style: TextStyle(
-                    fontSize: 32.sp,
-                    color: UIProvider().theme["text"],
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                "There is no internet Connection\nPlease check your internet connection then retry",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20.sp,
-                  color: UIProvider().theme["text"],
-                  fontFamily: 'Poppins',
-                ),
-              ),
-              SizedBox(
-                height: 30.h,
-              ),
-              RoundedLoadingButton(
-                color: UIprovider.theme["buttonColor"],
-                valueColor: UIprovider.theme["text"]!,
-                height: 72.h,
-                width: 340.w,
-                controller: AuthProvider.btnController,
-                onPressed: () => AuthProvider.checkInternetConnection(),
-                child: Text(
-                  "Retry",
-                  textAlign: TextAlign.left,
+    return Consumer2<UIProvider,AuthProvider>(
+      builder: (context,UIprovider,Authprovider,x) {
+        return Scaffold(
+backgroundColor: UIprovider.theme["backgroundColor"],
+          body: Container(
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            height: 844.h,
+            width: 390.w,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Lottie.asset('assets/lottie/light-no-internet.json'),
+                Text(
+                  "Oops!",
                   style: TextStyle(
-                      fontSize: 18.sp,
-                      color: Colors.white,
+                      fontSize: 32.sp,
+                      color: UIprovider.theme["text"],
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w600),
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 10.h,
+                ),
+                Text(
+                  "There is no internet Connection\nPlease check your internet connection then retry",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                    color: UIprovider.theme["text"],
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                RoundedLoadingButton(
+                  color: UIprovider.theme["buttonColor"],
+                  valueColor: UIprovider.theme["text"]!,
+                  height: 72.h,
+                  width: 340.w,
+                  controller: Authprovider.btnController,
+                  onPressed: () => Authprovider.checkInternetConnection(),
+                  child: Text(
+                    "Retry",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontSize: 18.sp,
+                        color: Colors.white,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
-      }),
+      }
     );
   }
 }
