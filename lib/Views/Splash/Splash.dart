@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Helpers/SP_Helper.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
+import 'package:to_do_app/Router/App_Router.dart';
+import 'package:to_do_app/Views/Auth/no_internet_page.dart';
+import 'package:to_do_app/Views/Screens/Home_Screen.dart';
 import 'package:to_do_app/colors/Colors.dart';
 
 import '../Auth/SignIn_Screen.dart';
@@ -18,11 +22,11 @@ class _SplashState extends State<Splash> {
   @override
   initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) {
-        return SignInScreen();
-      }));
+    Future.delayed(const Duration(seconds: 3), () async {
+      bool result = await InternetConnectionChecker().hasConnection;
+      result
+          ? AppRouter.pushWithReplacment(const HomeScreen())
+          : AppRouter.pushWithReplacment(const NoInternetPage());
     });
   }
 

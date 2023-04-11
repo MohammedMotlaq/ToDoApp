@@ -135,7 +135,7 @@ class SignInScreen extends StatelessWidget {
                         ),
                       ),
                       InkWell(
-                        //TODO: Navigate to SignUp Screen
+
                         onTap: () {
                           AppRouter.pushWithReplacment(SignUpScreen());
                         },
