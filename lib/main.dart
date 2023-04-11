@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:to_do_app/Helpers/SP_Helper.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Providers/auth_provider.dart';
+import 'package:to_do_app/Providers/validation_provider.dart';
 import 'package:to_do_app/Router/App_Router.dart';
 import 'package:to_do_app/Views/Splash/Splash.dart';
 
@@ -24,6 +25,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<UIProvider>(create: (context) => UIProvider()),
         ChangeNotifierProvider<AuthProvider>(
             create: (context) => AuthProvider()),
+        ChangeNotifierProvider<ValidationProvider>(
+            create: (context) => ValidationProvider()),
       ],
       child: ScreenUtilInit(
           designSize: const Size(390, 844),

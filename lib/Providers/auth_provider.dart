@@ -9,20 +9,31 @@ import 'package:to_do_app/Views/Splash/Splash.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool? signedUp;
-  bool? isLoading;
+
   RoundedLoadingButtonController btnController =
       new RoundedLoadingButtonController();
+  GlobalKey<FormState> signUpKey = GlobalKey();
+  TextEditingController fullName = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController confirmPassword = TextEditingController();
 
-  signUp(String email, String name, String password,
-      String confirmPassword) async {
-    signedUp = await AuthHelper.authHelper
-        .signUp(email, name, password, confirmPassword);
-    if (signedUp!) {
-      AppRouter.pushWidget(const SignInScreen());
+  signUp() async {
+    bool result = await InternetConnectionChecker().hasConnection;
+
+    if (result) {
+      if (signUpKey.currentState!.validate()) {
+        signedUp = await AuthHelper.authHelper.signUp(
+            email.text, fullName.text, password.text, confirmPassword.text);
+        if (signedUp!) {
+          AppRouter.pushWidget(const SignInScreen());
+        } else {
+          AppRouter.showErrorSnackBar("Email Already Exists!");
+        }
+      }
     } else {
-      AppRouter.showErrorSnackBar("Email Already Exists!");
+      AppRouter.showErrorSnackBar("No Internet Connection");
     }
-    notifyListeners();
   }
 
   checkInternetConnection() async {
