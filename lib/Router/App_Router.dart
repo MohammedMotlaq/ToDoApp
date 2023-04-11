@@ -28,6 +28,10 @@ class AppRouter {
     ));
   }
 
+  static popAll() {
+    Navigator.of(navKey.currentContext!).popUntil((route) => route.isFirst);
+  }
+
   static showSnackBar(String message) =>
       ScaffoldMessenger.of(navKey.currentContext!).showSnackBar(SnackBar(
         content: Text(message),

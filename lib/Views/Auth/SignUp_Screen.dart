@@ -164,7 +164,7 @@ class SignUpScreen extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 18.sp,
                             color: Colors.white,
-                            fontFamily: 'Inter',
+                            fontFamily: 'Poppins',
                             fontWeight: FontWeight.w600),
                       ),
                     ),
@@ -180,7 +180,7 @@ class SignUpScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18.sp,
                           color: UIprovider.theme['text'],
-                          fontFamily: 'Inter',
+                          fontFamily: 'Poppins',
                         ),
                       ),
                       InkWell(
@@ -192,7 +192,7 @@ class SignUpScreen extends StatelessWidget {
                           " Sign In",
                           style: TextStyle(
                             fontSize: 18.sp,
-                            fontFamily: 'Inter',
+                            fontFamily: 'Poppins',
                             color: UIprovider.theme['buttonColor'],
                           ),
                         ),

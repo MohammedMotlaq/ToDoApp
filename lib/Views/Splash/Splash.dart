@@ -25,8 +25,18 @@ class _SplashState extends State<Splash> {
     Future.delayed(const Duration(seconds: 3), () async {
       bool result = await InternetConnectionChecker().hasConnection;
       result
-          ? AppRouter.pushWithReplacment(const HomeScreen())
-          : AppRouter.pushWithReplacment(const NoInternetPage());
+
+          // ignore: use_build_context_synchronously
+          ? Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (BuildContext context) {
+              return const SignInScreen();
+            }))
+          :
+          // ignore: use_build_context_synchronously
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (BuildContext context) {
+              return const NoInternetPage();
+            }));
     });
   }
 
