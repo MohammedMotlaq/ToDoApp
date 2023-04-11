@@ -25,19 +25,21 @@ class _SearchContainerState extends State<SearchContainer> {
               height: 60.h,
               margin: EdgeInsets.only(top: 30.h, bottom: 5.h),
               decoration: BoxDecoration(
-                  border:
-                      Border.all(color: const Color.fromRGBO(217, 217, 217, 1)),
+                  // border:
+                  //     Border.all(color: const Color.fromRGBO(217, 217, 217, 1)),
                   color: UIprovider.theme['backgroundColor'],
                   borderRadius: BorderRadius.all(Radius.circular(8.r))),
               child: TextFormField(
                 decoration: InputDecoration(
+                  focusColor: Colors.deepOrange,
+                    focusedBorder:  OutlineInputBorder(borderSide: BorderSide(color:  Colors.deepOrange,width: 2.w)),
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 18.h, horizontal: 15.w),
                     prefixIcon: Icon(
                       Icons.search,
                       color: UIprovider.theme['text'],
                     ),
-                    border: InputBorder.none,
+                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: const Color.fromRGBO(217, 217, 217, 1))),
                     hintText: "Search",
                     hintStyle: TextStyle(
                         fontSize: 17.sp,

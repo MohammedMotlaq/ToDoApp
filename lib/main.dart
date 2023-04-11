@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               navigatorKey: AppRouter.navKey,
               theme: ThemeData(
-                primarySwatch: Colors.blue,
+                primarySwatch: Colors.deepOrange,
               ),
               home: const Splash(),
               debugShowCheckedModeBanner: false,
