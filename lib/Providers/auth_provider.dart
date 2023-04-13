@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:to_do_app/Helpers/Auth_Helper.dart';
+import 'package:to_do_app/Helpers/SP_Helper.dart';
+import 'package:to_do_app/Models/User_Model.dart';
 import 'package:to_do_app/Router/App_Router.dart';
 import 'package:to_do_app/Views/Auth/SignIn_Screen.dart';
 import 'package:to_do_app/Views/Auth/SignUp_Screen.dart';
-import 'package:to_do_app/Views/Splash/Splash.dart';
+import 'package:to_do_app/Views/Screens/Main_Screen.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool? signedUp;
@@ -26,15 +28,20 @@ class AuthProvider extends ChangeNotifier {
     if (result) {
       if (signUpKey.currentState!.validate()) {
         signedUp = await AuthHelper.authHelper.signUp(
-            email.text, fullName.text, password.text, confirmPassword.text);
-        email.clear();
-        fullName.clear();
-        password.clear();
-        confirmPassword.clear();
-        notifyListeners();
+            email.text.trim(),
+            fullName.text.trim(),
+            password.text.trim(),
+            confirmPassword.text.trim());
         if (signedUp!) {
-          AppRouter.pushWidget(const SignInScreen());
+          btnController.success();
+          Future.delayed(const Duration(milliseconds: 200), () async {
+            AppRouter.pushWithReplacment(const SignInScreen());
+            confirmPassword.clear();
+            fullName.clear();
+            password.clear();
+          });
         } else {
+          btnController.reset();
           AppRouter.showErrorSnackBar("Email Already Exists!");
         }
       }
@@ -47,7 +54,26 @@ class AuthProvider extends ChangeNotifier {
     bool result = await InternetConnectionChecker().hasConnection;
     if (result) {
       if (signInKey.currentState!.validate()) {
-        await AuthHelper.authHelper.signIn(email.text, password.text);
+        var user =
+            await AuthHelper.authHelper.signIn(email.text, password.text);
+        if (user == null) {
+          AppRouter.showErrorSnackBar("Wrong Password or Email");
+          btnController.reset();
+        } else {
+          await SPHelper.saveEmail(user.email!);
+          await SPHelper.saveName(user.name!);
+          await SPHelper.saveToken(user.token!);
+          btnController.success();
+          Future.delayed(const Duration(milliseconds: 200), () async {
+            AppRouter.popAll();
+            AppRouter.pushWidget(const MainScreen());
+          });
+          email.clear();
+          password.clear();
+          btnController.reset();
+        }
+      } else {
+        btnController.reset();
       }
     } else {
       AppRouter.showErrorSnackBar("No Internet Connection");
@@ -58,20 +84,18 @@ class AuthProvider extends ChangeNotifier {
     bool result = await InternetConnectionChecker().hasConnection;
     if (result) {
       btnController.success();
-      notifyListeners();
-      Future.delayed(const Duration(seconds: 2), () async {
+      Future.delayed(const Duration(seconds: 1), () async {
         AppRouter.popAll();
         AppRouter.pushWidget(const SignInScreen());
       });
     } else {
       Future.delayed(const Duration(seconds: 1), () async {
         btnController.error();
-        notifyListeners();
       });
     }
+
     Future.delayed(const Duration(seconds: 3), () async {
       btnController.reset();
-      notifyListeners();
     });
   }
 }
