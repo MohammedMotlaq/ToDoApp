@@ -72,7 +72,7 @@ class SignInScreen extends StatelessWidget {
                         width: 343.w,
                         child: TextFormField(
                           onFieldSubmitted: (_) {
-                            Authprovider.signIn();
+                            Authprovider.btnController.start();
                           },
                           controller: Authprovider.email,
                           validator: Validationprovider.emailValidator,
@@ -101,7 +101,7 @@ class SignInScreen extends StatelessWidget {
                         width: 343.w,
                         child: TextFormField(
                           onFieldSubmitted: (_) {
-                            Authprovider.signIn();
+                            Authprovider.btnController.start();
                           },
                           controller: Authprovider.password,
                           validator: Validationprovider.requiredField,

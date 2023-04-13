@@ -80,7 +80,7 @@ class SignUpScreen extends StatelessWidget {
                         margin: EdgeInsets.only(top: 11.h),
                         child: TextFormField(
                           onFieldSubmitted: (_) {
-                            Authprovider.signUp();
+                            Authprovider.btnController.start();
                           },
                           controller: Authprovider.fullName,
                           validator: Validationprovider.requiredField,
@@ -107,7 +107,7 @@ class SignUpScreen extends StatelessWidget {
                         margin: EdgeInsets.only(top: 14.h),
                         child: TextFormField(
                           onFieldSubmitted: (_) {
-                            Authprovider.signUp();
+                            Authprovider.btnController.start();
                           },
                           controller: Authprovider.email,
                           validator: Validationprovider.emailValidator,
@@ -134,7 +134,7 @@ class SignUpScreen extends StatelessWidget {
                         margin: EdgeInsets.only(top: 14.h),
                         child: TextFormField(
                           onFieldSubmitted: (_) {
-                            Authprovider.signUp();
+                            Authprovider.btnController.start();
                           },
                           controller: Authprovider.password,
                           validator: Validationprovider.requiredField,
@@ -161,7 +161,7 @@ class SignUpScreen extends StatelessWidget {
                         margin: EdgeInsets.only(top: 14.h),
                         child: TextFormField(
                           onFieldSubmitted: (_) {
-                            Authprovider.signUp();
+                            Authprovider.btnController.start();
                           },
                           controller: Authprovider.confirmPassword,
                           validator: Validationprovider.requiredField,
