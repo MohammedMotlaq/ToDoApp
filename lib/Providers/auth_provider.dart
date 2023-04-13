@@ -43,7 +43,7 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       Future.delayed(const Duration(seconds: 2), () async {
         AppRouter.popAll();
-        AppRouter.pushWithReplacment(const SignInScreen());
+        AppRouter.pushWidget(const SignInScreen());
       });
     } else {
       Future.delayed(const Duration(seconds: 1), () async {
