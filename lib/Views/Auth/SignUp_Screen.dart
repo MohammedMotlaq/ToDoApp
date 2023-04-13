@@ -79,6 +79,9 @@ class SignUpScreen extends StatelessWidget {
                         width: 343.w,
                         margin: EdgeInsets.only(top: 11.h),
                         child: TextFormField(
+                          onFieldSubmitted: (_) {
+                            Authprovider.signUp();
+                          },
                           controller: Authprovider.fullName,
                           validator: Validationprovider.requiredField,
                           decoration: InputDecoration(
@@ -103,6 +106,9 @@ class SignUpScreen extends StatelessWidget {
                         width: 343.w,
                         margin: EdgeInsets.only(top: 14.h),
                         child: TextFormField(
+                          onFieldSubmitted: (_) {
+                            Authprovider.signUp();
+                          },
                           controller: Authprovider.email,
                           validator: Validationprovider.emailValidator,
                           decoration: InputDecoration(
@@ -127,6 +133,9 @@ class SignUpScreen extends StatelessWidget {
                         width: 343.w,
                         margin: EdgeInsets.only(top: 14.h),
                         child: TextFormField(
+                          onFieldSubmitted: (_) {
+                            Authprovider.signUp();
+                          },
                           controller: Authprovider.password,
                           validator: Validationprovider.requiredField,
                           decoration: InputDecoration(
@@ -151,6 +160,9 @@ class SignUpScreen extends StatelessWidget {
                         width: 343.w,
                         margin: EdgeInsets.only(top: 14.h),
                         child: TextFormField(
+                          onFieldSubmitted: (_) {
+                            Authprovider.signUp();
+                          },
                           controller: Authprovider.confirmPassword,
                           validator: Validationprovider.requiredField,
                           decoration: InputDecoration(

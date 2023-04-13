@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
@@ -70,6 +71,9 @@ class SignInScreen extends StatelessWidget {
                       Container(
                         width: 343.w,
                         child: TextFormField(
+                          onFieldSubmitted: (_) {
+                            Authprovider.signIn();
+                          },
                           controller: Authprovider.email,
                           validator: Validationprovider.emailValidator,
                           decoration: InputDecoration(
@@ -96,6 +100,9 @@ class SignInScreen extends StatelessWidget {
                       Container(
                         width: 343.w,
                         child: TextFormField(
+                          onFieldSubmitted: (_) {
+                            Authprovider.signIn();
+                          },
                           controller: Authprovider.password,
                           validator: Validationprovider.requiredField,
                           decoration: InputDecoration(
