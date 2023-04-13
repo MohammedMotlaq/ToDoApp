@@ -13,6 +13,8 @@ class AuthProvider extends ChangeNotifier {
   RoundedLoadingButtonController btnController =
       new RoundedLoadingButtonController();
   GlobalKey<FormState> signUpKey = GlobalKey();
+  GlobalKey<FormState> signInKey = GlobalKey();
+
   TextEditingController fullName = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -25,11 +27,27 @@ class AuthProvider extends ChangeNotifier {
       if (signUpKey.currentState!.validate()) {
         signedUp = await AuthHelper.authHelper.signUp(
             email.text, fullName.text, password.text, confirmPassword.text);
+        email.clear();
+        fullName.clear();
+        password.clear();
+        confirmPassword.clear();
+        notifyListeners();
         if (signedUp!) {
           AppRouter.pushWidget(const SignInScreen());
         } else {
           AppRouter.showErrorSnackBar("Email Already Exists!");
         }
+      }
+    } else {
+      AppRouter.showErrorSnackBar("No Internet Connection");
+    }
+  }
+
+  signIn() async {
+    bool result = await InternetConnectionChecker().hasConnection;
+    if (result) {
+      if (signInKey.currentState!.validate()) {
+        await AuthHelper.authHelper.signIn(email.text, password.text);
       }
     } else {
       AppRouter.showErrorSnackBar("No Internet Connection");

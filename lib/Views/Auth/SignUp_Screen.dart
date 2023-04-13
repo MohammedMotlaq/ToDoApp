@@ -35,6 +35,7 @@ class SignUpScreen extends StatelessWidget {
             child: Form(
               key: Authprovider.signUpKey,
               child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,7 +72,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     Container(
                       width: 343.w,
-                      margin: EdgeInsets.only(top: 14.h),
+                      margin: EdgeInsets.only(top: 11.h),
                       child: TextFormField(
                         controller: Authprovider.fullName,
                         validator: Validationprovider.requiredField,
@@ -170,7 +171,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 72.h,
-                      width: 340.w,
+                      width: 343.w,
                       child: ElevatedButton(
                         onPressed: () {
                           Authprovider.signUp();
@@ -180,7 +181,7 @@ class SignUpScreen extends StatelessWidget {
                           backgroundColor: UIprovider.theme['buttonColor'],
                         ),
                         child: Text(
-                          "SignUp",
+                          "Sign Up",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               fontSize: 18.sp,
@@ -191,7 +192,7 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 29,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -205,7 +206,6 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ),
                         InkWell(
-                          //TODO: Navigate to Login Screen
                           onTap: () {
                             AppRouter.pushWithReplacment(SignInScreen());
                           },
@@ -221,7 +221,7 @@ class SignUpScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 73.h,
+                      height: 50.h,
                     ),
                   ],
                 ),
