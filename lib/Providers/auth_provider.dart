@@ -4,6 +4,7 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:to_do_app/Helpers/Auth_Helper.dart';
 import 'package:to_do_app/Helpers/SP_Helper.dart';
 import 'package:to_do_app/Models/User_Model.dart';
+import 'package:to_do_app/Models/tasks_model.dart';
 import 'package:to_do_app/Router/App_Router.dart';
 import 'package:to_do_app/Views/Auth/SignIn_Screen.dart';
 import 'package:to_do_app/Views/Auth/SignUp_Screen.dart';
@@ -16,15 +17,13 @@ class AuthProvider extends ChangeNotifier {
       new RoundedLoadingButtonController();
   GlobalKey<FormState> signUpKey = GlobalKey();
   GlobalKey<FormState> signInKey = GlobalKey();
-
   TextEditingController fullName = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
-
+  List<Tasks> tasks = [];
   signUp() async {
     bool result = await InternetConnectionChecker().hasConnection;
-
     if (result) {
       if (signUpKey.currentState!.validate()) {
         signedUp = await AuthHelper.authHelper.signUp(
@@ -67,6 +66,7 @@ class AuthProvider extends ChangeNotifier {
           Future.delayed(const Duration(milliseconds: 200), () async {
             AppRouter.popAll();
             AppRouter.pushWidget(const MainScreen());
+            getAllTasks();
           });
           email.clear();
           password.clear();
@@ -97,5 +97,10 @@ class AuthProvider extends ChangeNotifier {
     Future.delayed(const Duration(seconds: 3), () async {
       btnController.reset();
     });
+  }
+
+  getAllTasks() async {
+    tasks = await AuthHelper.authHelper.getAllTasks();
+    notifyListeners();
   }
 }

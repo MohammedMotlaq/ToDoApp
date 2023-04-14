@@ -11,6 +11,7 @@ class AuthHelper {
   static AuthHelper authHelper = AuthHelper._();
   final signUpUri = Uri.https(Constants.todoApiHostName, '/auth/signup');
   final signInUri = Uri.https(Constants.todoApiHostName, '/auth/login');
+  final tasksUri = Uri.https(Constants.todoApiHostName, '/tasks');
 
   signUp(String email, String name, String password,
       String confirmPassword) async {
@@ -41,13 +42,25 @@ class AuthHelper {
     //final mapData = json.decode(data);
 
     //Regular Post
-    Response meaw = await http
+    Response response = await http
         .post(signInUri, body: {'email': email, 'password': password});
-    if (meaw.statusCode == 200) {
-      User user = User.fromJson(json.decode(meaw.body)["user"]);
+    if (response.statusCode == 200) {
+      User user = User.fromJson(json.decode(response.body)["user"]);
       return user;
     } else {
       return null;
+    }
+  }
+
+  getAllTasks() async {
+    String token = await SPHelper.getToken();
+    Response response =
+        await http.get(tasksUri, headers: {"Authorization": "Bearer $token"});
+
+    if (response.statusCode == 200) {
+      return response;
+    } else {
+      return false;
     }
   }
 }

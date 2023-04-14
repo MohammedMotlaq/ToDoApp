@@ -23,11 +23,23 @@ class SPHelper {
     _sp.setString("email", email);
   }
 
+  static getEmail() {
+    return _sp.getString("email");
+  }
+
   static saveName(String name) {
     _sp.setString("name", name);
   }
 
+  static getName() {
+    return _sp.getString("name");
+  }
+
   static saveToken(String token) {
     _sp.setString("token", token);
+  }
+
+  static getToken() {
+    return _sp.getString("token");
   }
 }
