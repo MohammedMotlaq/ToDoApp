@@ -7,6 +7,7 @@ import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Router/App_Router.dart';
 import 'package:to_do_app/Views/Auth/no_internet_page.dart';
 import 'package:to_do_app/Views/Screens/Home_Screen.dart';
+import 'package:to_do_app/Views/Screens/Main_Screen.dart';
 import 'package:to_do_app/colors/Colors.dart';
 
 import '../Auth/SignIn_Screen.dart';
@@ -25,12 +26,8 @@ class _SplashState extends State<Splash> {
     Future.delayed(const Duration(seconds: 3), () async {
       bool result = await InternetConnectionChecker().hasConnection;
       result
-
           // ignore: use_build_context_synchronously
-          ? Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (BuildContext context) {
-              return SignInScreen();
-            }))
+          ? navigateUser()
           :
           // ignore: use_build_context_synchronously
           Navigator.pushReplacement(context,
@@ -40,13 +37,27 @@ class _SplashState extends State<Splash> {
     });
   }
 
+  navigateUser() {
+    String? token = SPHelper.getToken();
+    if (token == null) {
+      return Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+        return SignInScreen();
+      }));
+    }
+    return Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (BuildContext context) {
+      return MainScreen();
+    }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Consumer<UIProvider>(builder: (context, UIprovider, x) {
         return Container(
           alignment: Alignment.center,
-          color: UIprovider.theme['backgroundColor'],
+          color: UIprovider.theme['SplashBackgroundColor'],
           width: 390.w,
           height: 844.h,
           child: Column(
@@ -57,14 +68,14 @@ class _SplashState extends State<Splash> {
               Text(
                 "My Tasks",
                 style: TextStyle(
-                    color: UIprovider.theme['text'],
+                    color: Colors.white,
                     fontSize: 32.sp,
                     fontWeight: FontWeight.bold),
               ),
               Text(
                 "مهامي",
                 style: TextStyle(
-                    color: UIprovider.theme['text'],
+                    color: Colors.white,
                     fontSize: 32.sp,
                     fontWeight: FontWeight.bold),
               ),
@@ -99,7 +110,9 @@ class _SplashState extends State<Splash> {
                 child: Text(
                   "Have a Nice Day 👋😍",
                   style: TextStyle(
-                      color: UIprovider.theme['text'], fontSize: 25.sp),
+                    color: Colors.white,
+                    fontSize: 25.sp,
+                  ),
                 ),
               ),
             ],

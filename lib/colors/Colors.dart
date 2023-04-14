@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 Map<String, Color> lightColors = {
   "backgroundColor": const Color(0xFFFFFFFF),
+  "SplashBackgroundColor": const Color(0xFFDB2323),
   "textInputs": const Color(0x40FF4444),
   "text": const Color(0xff000000),
   "buttonColor": const Color(0xFFFF4444),
@@ -11,11 +12,12 @@ Map<String, Color> lightColors = {
   "selectedColor": const Color(0xFFFF4444),
   "unselectedColor": const Color(0xFF000000),
   "someText": const Color(0xFFFF4444),
-  "iconsColor":const Color(0xFFD1CDCD)
+  "iconsColor": const Color(0xFFD1CDCD)
 };
 
 Map<String, Color> DarkColors = {
   "backgroundColor": const Color(0xFF000000),
+  "SplashBackgroundColor": const Color(0xFFffffff),
   "textInputs": const Color(0x40FF4444),
   "text": const Color(0xFFFFFFFF),
   "buttonColor": const Color(0xFFFF4444),
@@ -25,6 +27,5 @@ Map<String, Color> DarkColors = {
   "selectedColor": const Color(0xFFFF0000),
   "unselectedColor": const Color.fromARGB(255, 255, 255, 255),
   "someText": const Color(0xFFFFFFFF),
-  "iconsColor":const Color(0xFFBBB6B6)
-
+  "iconsColor": const Color(0xFFBBB6B6)
 };
