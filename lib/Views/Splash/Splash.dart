@@ -28,7 +28,7 @@ class _SplashState extends State<Splash> {
       bool result = await InternetConnectionChecker().hasConnection;
       result
           // ignore: use_build_context_synchronously
-          ? navigateUser()
+          ? await navigateUser()
           :
           // ignore: use_build_context_synchronously
           Navigator.pushReplacement(context,
@@ -38,7 +38,7 @@ class _SplashState extends State<Splash> {
     });
   }
 
-  navigateUser() {
+  navigateUser() async {
     String? token = SPHelper.getToken();
     if (token == null) {
       return Navigator.pushReplacement(context,
@@ -46,7 +46,12 @@ class _SplashState extends State<Splash> {
         return SignInScreen();
       }));
     }
-    DataProvider().splashgetAllTasks();
+
+    await Provider.of<DataProvider>(AppRouter.navKey.currentContext!,
+            listen: false)
+        .getAllTasks();
+    AppRouter.popAll();
+    AppRouter.pushWidgetWithMaterial(const MainScreen());
   }
 
   @override

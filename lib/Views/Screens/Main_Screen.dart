@@ -18,7 +18,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int index = 0;
   bool _isBottomSheetVisible = false;
-  Widget bodyWidget = const HomeScreen();
+  Widget bodyWidget = HomeScreen();
   @override
   Widget build(BuildContext context) {
     return Consumer<UIProvider>(builder: (context, UIprovider, x) {
@@ -76,7 +76,7 @@ class _MainScreenState extends State<MainScreen> {
             if (i == 0) {
               index = 0;
               setState(() {
-                bodyWidget = const HomeScreen();
+                bodyWidget = HomeScreen();
               });
             } else if (i == 1) {
               index = 1;

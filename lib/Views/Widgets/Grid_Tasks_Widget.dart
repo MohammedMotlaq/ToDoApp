@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:to_do_app/Models/task_model.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 
 import '../../colors/Colors.dart';
 
 class GridTaskWidget extends StatefulWidget {
-  const GridTaskWidget({super.key});
+  Tasks task;
+  GridTaskWidget({super.key, required this.task});
 
   @override
   State<GridTaskWidget> createState() => _GridTaskWidgetState();
@@ -30,7 +32,7 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Pay Emma",
+                widget.task.title ?? "Unknown",
                 style: TextStyle(
                     fontSize: 24.sp,
                     fontWeight: FontWeight.bold,
@@ -41,12 +43,18 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
             SizedBox(
               height: 22.h,
             ),
-            Text(
-              "20 dollars for manga",
-              style: TextStyle(
-                  fontSize: 16.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w300),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 8.w),
+                child: Text(
+                  widget.task.description ?? "Unknown",
+                  style: TextStyle(
+                      fontSize: 16.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300),
+                ),
+              ),
             ),
             const Spacer(),
             Row(

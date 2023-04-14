@@ -3,13 +3,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 
+import '../../Models/task_model.dart';
 import '../../colors/Colors.dart';
 
 class TaskWidget extends StatefulWidget {
-  int index,selectedIndex;
+  Tasks task;
+  int index, selectedIndex;
   Function changeSelectedIndex;
 
-   TaskWidget({super.key,required this.index,required this.selectedIndex,required this.changeSelectedIndex});
+  TaskWidget(
+      {super.key,
+      required this.index,
+      required this.selectedIndex,
+      required this.changeSelectedIndex,
+      required this.task});
 
   @override
   State<TaskWidget> createState() => _TaskWidgetState();
@@ -20,13 +27,14 @@ class _TaskWidgetState extends State<TaskWidget> {
   Widget build(BuildContext context) {
     return Consumer<UIProvider>(builder: (context, UIprovider, x) {
       return GestureDetector(
-        onDoubleTap: (){
-          widget.selectedIndex==widget.index?
-          widget.changeSelectedIndex(-1):widget.changeSelectedIndex(widget.index);
+        onDoubleTap: () {
+          widget.selectedIndex == widget.index
+              ? widget.changeSelectedIndex(-1)
+              : widget.changeSelectedIndex(widget.index);
         },
         child: AnimatedContainer(
           padding: EdgeInsets.symmetric(vertical: 13.h, horizontal: 11.w),
-          height:  widget.selectedIndex==widget.index?200.h: 100.h,
+          height: widget.selectedIndex == widget.index ? 200.h : 100.h,
           margin: EdgeInsets.only(top: 23.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.r),
@@ -47,7 +55,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Pay Emma",
+                    widget.task.title ?? "Unknown",
                     style: TextStyle(
                         fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
@@ -57,17 +65,18 @@ class _TaskWidgetState extends State<TaskWidget> {
                   const Spacer(),
                   SizedBox(
                     width: 230.w,
-                    height:  widget.selectedIndex==widget.index?145.h:45.h,
+                    height: widget.selectedIndex == widget.index ? 145.h : 45.h,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Text(
-                        "20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga 20 dollars for manga ",
+                        widget.task.description ?? "Unknown",
                         style: TextStyle(
                             fontSize: 16.sp,
                             color: Colors.white,
                             fontWeight: FontWeight.w300,
-                          overflow: widget.selectedIndex==widget.index?TextOverflow.clip:TextOverflow.ellipsis
-                        ),
+                            overflow: widget.selectedIndex == widget.index
+                                ? TextOverflow.clip
+                                : TextOverflow.ellipsis),
                       ),
                     ),
                   ),

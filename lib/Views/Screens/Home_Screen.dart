@@ -112,16 +112,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           : (grid)
                               ? ListView.builder(
                                   padding: EdgeInsets.zero,
-                                  itemCount: 10,
+                                  itemCount: Dataprovider.tasks.length,
                                   itemBuilder: (context, index) => TaskWidget(
                                     index: index,
                                     selectedIndex: selectedIndex,
                                     changeSelectedIndex: changeSelectedIndex,
+                                    task: Dataprovider.tasks[index],
                                   ),
                                 )
                               : GridView.builder(
                                   padding: EdgeInsets.zero,
-                                  itemCount: 10,
+                                  itemCount: Dataprovider.tasks.length,
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
@@ -130,7 +131,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    return const GridTaskWidget();
+                                    return GridTaskWidget(
+                                      task: Dataprovider.tasks[index],
+                                    );
                                   },
                                 )))
             ],
