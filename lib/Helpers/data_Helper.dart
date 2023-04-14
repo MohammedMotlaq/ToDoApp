@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:to_do_app/Constants/Constants.dart';
@@ -11,10 +12,12 @@ class DataHelper {
   List<Tasks> tasks = [];
   final tasksUri = Uri.https(Constants.todoApiHostName, '/tasks');
 
-  getAllTasks() async {
+  getAllTasks(String searchQuery) async {
     String token = await SPHelper.getToken();
-    http.Response response =
-        await http.get(tasksUri, headers: {"Authorization": "Bearer $token"});
+    Uri tasksUriWithQuery =
+        tasksUri.replace(queryParameters: {"q": searchQuery});
+    http.Response response = await http
+        .get(tasksUriWithQuery, headers: {"Authorization": "Bearer $token"});
 
     if (response.statusCode == 200) {
       json.decode(response.body)["tasks"].forEach((v) {

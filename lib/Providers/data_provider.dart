@@ -12,14 +12,8 @@ class DataProvider extends ChangeNotifier {
     Tasks(title: "test", description: "test", isDone: false)
   ];
 
-  getAllTasks() async {
-    tasks = await DataHelper.dataHelper.getAllTasks();
-    print(tasks.toString());
-    notifyListeners();
-  }
-
-  splashgetAllTasks() async {
-    tasks = await DataHelper.dataHelper.getAllTasks();
+  getAllTasks({String searchQuery = ""}) async {
+    tasks = await DataHelper.dataHelper.getAllTasks(searchQuery);
     print(tasks.toString());
     notifyListeners();
   }
