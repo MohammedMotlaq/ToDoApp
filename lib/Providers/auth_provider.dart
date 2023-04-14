@@ -66,8 +66,6 @@ class AuthProvider extends ChangeNotifier {
           await SPHelper.saveToken(user.token!);
           btnController.success();
           Future.delayed(const Duration(milliseconds: 200), () async {
-            AppRouter.popAll();
-            AppRouter.pushWidget(const MainScreen());
             getAllTasks();
           });
           email.clear();
@@ -102,6 +100,8 @@ class AuthProvider extends ChangeNotifier {
   }
 
   getAllTasks() async {
+    AppRouter.popAll();
+    AppRouter.pushWidget(const MainScreen());
     tasks = await AuthHelper.authHelper.getAllTasks();
     notifyListeners();
   }
