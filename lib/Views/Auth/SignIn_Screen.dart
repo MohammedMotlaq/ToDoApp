@@ -12,7 +12,8 @@ import 'package:to_do_app/Views/Screens/Main_Screen.dart';
 import 'package:to_do_app/colors/Colors.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  final _foucs2 = FocusNode();
+  SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +73,12 @@ class SignInScreen extends StatelessWidget {
                         width: 343.w,
                         child: TextFormField(
                           onFieldSubmitted: (_) {
-                            Authprovider.btnController.start();
+                            FocusScope.of(context).requestFocus(_foucs2);
                           },
+                          style: TextStyle(
+                            color: UIprovider.theme["text"],
+                          ),
+                          textInputAction: TextInputAction.next,
                           controller: Authprovider.email,
                           validator: Validationprovider.emailValidator,
                           decoration: InputDecoration(
@@ -100,9 +105,13 @@ class SignInScreen extends StatelessWidget {
                       Container(
                         width: 343.w,
                         child: TextFormField(
+                          focusNode: _foucs2,
                           onFieldSubmitted: (_) {
                             Authprovider.btnController.start();
                           },
+                          style: TextStyle(
+                            color: UIprovider.theme["text"],
+                          ),
                           controller: Authprovider.password,
                           validator: Validationprovider.requiredField,
                           decoration: InputDecoration(
@@ -163,8 +172,7 @@ class SignInScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              AppRouter.pushWithReplacment(
-                                  const SignUpScreen());
+                              AppRouter.pushWithReplacment(SignUpScreen());
                             },
                             child: Text(
                               " Sign Up",

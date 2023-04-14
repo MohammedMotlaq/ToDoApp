@@ -11,7 +11,10 @@ import 'package:to_do_app/Views/Auth/SignIn_Screen.dart';
 import '../../colors/Colors.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  final _focus2 = FocusNode();
+  final _focus3 = FocusNode();
+  final _focus4 = FocusNode();
+  SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +83,12 @@ class SignUpScreen extends StatelessWidget {
                         margin: EdgeInsets.only(top: 11.h),
                         child: TextFormField(
                           onFieldSubmitted: (_) {
-                            Authprovider.btnController.start();
+                            FocusScope.of(context).requestFocus(_focus2);
                           },
+                          style: TextStyle(
+                            color: UIprovider.theme["text"],
+                          ),
+                          textInputAction: TextInputAction.next,
                           controller: Authprovider.fullName,
                           validator: Validationprovider.requiredField,
                           decoration: InputDecoration(
@@ -106,9 +113,14 @@ class SignUpScreen extends StatelessWidget {
                         width: 343.w,
                         margin: EdgeInsets.only(top: 14.h),
                         child: TextFormField(
+                          focusNode: _focus2,
                           onFieldSubmitted: (_) {
-                            Authprovider.btnController.start();
+                            FocusScope.of(context).requestFocus(_focus3);
                           },
+                          style: TextStyle(
+                            color: UIprovider.theme["text"],
+                          ),
+                          textInputAction: TextInputAction.next,
                           controller: Authprovider.email,
                           validator: Validationprovider.emailValidator,
                           decoration: InputDecoration(
@@ -133,9 +145,14 @@ class SignUpScreen extends StatelessWidget {
                         width: 343.w,
                         margin: EdgeInsets.only(top: 14.h),
                         child: TextFormField(
+                          focusNode: _focus3,
                           onFieldSubmitted: (_) {
-                            Authprovider.btnController.start();
+                            FocusScope.of(context).requestFocus(_focus4);
                           },
+                          style: TextStyle(
+                            color: UIprovider.theme["text"],
+                          ),
+                          textInputAction: TextInputAction.next,
                           controller: Authprovider.password,
                           validator: Validationprovider.requiredField,
                           decoration: InputDecoration(
@@ -160,9 +177,13 @@ class SignUpScreen extends StatelessWidget {
                         width: 343.w,
                         margin: EdgeInsets.only(top: 14.h),
                         child: TextFormField(
+                          focusNode: _focus4,
                           onFieldSubmitted: (_) {
                             Authprovider.btnController.start();
                           },
+                          style: TextStyle(
+                            color: UIprovider.theme["text"],
+                          ),
                           controller: Authprovider.confirmPassword,
                           validator: Validationprovider.requiredField,
                           decoration: InputDecoration(
@@ -224,7 +245,8 @@ class SignUpScreen extends StatelessWidget {
                           InkWell(
                             onTap: () {
                               AppRouter.pushWithReplacment(
-                                  const SignInScreen());
+                                SignInScreen(),
+                              );
                             },
                             child: Text(
                               " Sign In",
