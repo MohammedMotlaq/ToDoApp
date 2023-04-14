@@ -105,34 +105,34 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 10.h,
               ),
               SingleChildScrollView(
-                child: SizedBox(
-                    height: MediaQuery.of(context).size.height - 230.h,
-                    child: Dataprovider.tasks.isEmpty
-                        ? Center(child: const CircularProgressIndicator())
-                        : grid
-                            ? ListView.builder(
-                                padding: EdgeInsets.zero,
-                                itemCount: 10,
-                                itemBuilder: (context, index) => TaskWidget(
-                                  index: index,
-                                  selectedIndex: selectedIndex,
-                                  changeSelectedIndex: changeSelectedIndex,
-                                ),
-                              )
-                            : GridView.builder(
-                                padding: EdgeInsets.zero,
-                                itemCount: 10,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 22.w,
-                                  childAspectRatio: 1 / 1.2,
-                                ),
-                                itemBuilder: (BuildContext context, int index) {
-                                  return const GridTaskWidget();
-                                },
-                              )),
-              )
+                  child: SizedBox(
+                      height: MediaQuery.of(context).size.height - 230.h,
+                      child: (Dataprovider.tasks == [])
+                          ? Center(child: CircularProgressIndicator())
+                          : (grid)
+                              ? ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  itemCount: 10,
+                                  itemBuilder: (context, index) => TaskWidget(
+                                    index: index,
+                                    selectedIndex: selectedIndex,
+                                    changeSelectedIndex: changeSelectedIndex,
+                                  ),
+                                )
+                              : GridView.builder(
+                                  padding: EdgeInsets.zero,
+                                  itemCount: 10,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 22.w,
+                                    childAspectRatio: 1 / 1.2,
+                                  ),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return const GridTaskWidget();
+                                  },
+                                )))
             ],
           ),
         ),

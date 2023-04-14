@@ -20,6 +20,7 @@ class DataHelper {
       json.decode(response.body)["tasks"].forEach((v) {
         tasks.add(Tasks.fromJson(v));
       });
+      // print("Helper:\n" + tasks.toString());
       return tasks;
     } else {
       return [];

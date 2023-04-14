@@ -4,6 +4,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Helpers/SP_Helper.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
+import 'package:to_do_app/Providers/data_provider.dart';
 import 'package:to_do_app/Router/App_Router.dart';
 import 'package:to_do_app/Views/Auth/no_internet_page.dart';
 import 'package:to_do_app/Views/Screens/Home_Screen.dart';
@@ -45,10 +46,7 @@ class _SplashState extends State<Splash> {
         return SignInScreen();
       }));
     }
-    return Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) {
-      return MainScreen();
-    }));
+    DataProvider().splashgetAllTasks();
   }
 
   @override

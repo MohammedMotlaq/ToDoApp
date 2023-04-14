@@ -9,12 +9,19 @@ import 'package:to_do_app/Views/Screens/Main_Screen.dart';
 
 class DataProvider extends ChangeNotifier {
   List<Tasks> tasks = [];
-
   getAllTasks() async {
     AppRouter.popAll();
     AppRouter.pushWidget(const MainScreen());
     tasks = await DataHelper.dataHelper.getAllTasks();
-    print(tasks.toList().toString());
+    print(tasks.toString());
+    notifyListeners();
+  }
+
+  splashgetAllTasks() async {
+    AppRouter.popAll();
+    AppRouter.pushWidgetWithMaterial(const MainScreen());
+    tasks = await DataHelper.dataHelper.getAllTasks();
+    print(tasks.toString());
     notifyListeners();
   }
 }

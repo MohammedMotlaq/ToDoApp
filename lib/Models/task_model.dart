@@ -21,4 +21,9 @@ class Tasks {
     data['is_done'] = isDone;
     return data;
   }
+
+  @override
+  String toString() {
+    return title!;
+  }
 }

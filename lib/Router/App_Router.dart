@@ -8,6 +8,13 @@ class AppRouter {
         .pushReplacement(MaterialPageRoute(builder: (context) => widget));
   }
 
+  static pushWidgetWithMaterial(Widget widget) {
+    Navigator.pushReplacement(navKey.currentContext!,
+        MaterialPageRoute(builder: (BuildContext context) {
+      return widget;
+    }));
+  }
+
   static pushWidget(Widget widget) {
     Navigator.of(navKey.currentContext!)
         .push(MaterialPageRoute(builder: (context) => widget));
