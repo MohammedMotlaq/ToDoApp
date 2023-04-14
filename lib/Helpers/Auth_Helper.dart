@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:to_do_app/Constants/Constants.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:to_do_app/Helpers/SP_Helper.dart';
 import 'package:to_do_app/Models/User_Model.dart';
 
@@ -11,7 +10,6 @@ class AuthHelper {
   static AuthHelper authHelper = AuthHelper._();
   final signUpUri = Uri.https(Constants.todoApiHostName, '/auth/signup');
   final signInUri = Uri.https(Constants.todoApiHostName, '/auth/login');
-  final tasksUri = Uri.https(Constants.todoApiHostName, '/tasks');
 
   signUp(String email, String name, String password,
       String confirmPassword) async {
@@ -42,25 +40,13 @@ class AuthHelper {
     //final mapData = json.decode(data);
 
     //Regular Post
-    Response response = await http
+    http.Response response = await http
         .post(signInUri, body: {'email': email, 'password': password});
     if (response.statusCode == 200) {
       User user = User.fromJson(json.decode(response.body)["user"]);
       return user;
     } else {
       return null;
-    }
-  }
-
-  getAllTasks() async {
-    String token = await SPHelper.getToken();
-    Response response =
-        await http.get(tasksUri, headers: {"Authorization": "Bearer $token"});
-
-    if (response.statusCode == 200) {
-      return response;
-    } else {
-      return false;
     }
   }
 }

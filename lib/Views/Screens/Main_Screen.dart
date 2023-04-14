@@ -18,7 +18,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int index = 0;
   bool _isBottomSheetVisible = false;
-  Widget bodyWidget = HomeScreen();
+  Widget bodyWidget = const HomeScreen();
   @override
   Widget build(BuildContext context) {
     return Consumer<UIProvider>(builder: (context, UIprovider, x) {
@@ -36,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
               builder: (context) => Padding(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child:const AddTaskWidget(),
+                child: const AddTaskWidget(),
               ),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -76,12 +76,12 @@ class _MainScreenState extends State<MainScreen> {
             if (i == 0) {
               index = 0;
               setState(() {
-                bodyWidget = HomeScreen();
+                bodyWidget = const HomeScreen();
               });
             } else if (i == 1) {
               index = 1;
               setState(() {
-                bodyWidget = SearchContainer();
+                bodyWidget = const SearchContainer();
               });
             }
           },

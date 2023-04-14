@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:to_do_app/Helpers/SP_Helper.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Providers/auth_provider.dart';
+import 'package:to_do_app/Providers/data_provider.dart';
 import 'package:to_do_app/Providers/validation_provider.dart';
 import 'package:to_do_app/Router/App_Router.dart';
 import 'package:to_do_app/Views/Splash/Splash.dart';
@@ -11,22 +12,24 @@ import 'package:to_do_app/Views/Splash/Splash.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SPHelper.initializeSp();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+  final dataProvider = DataProvider();
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<UIProvider>(create: (context) => UIProvider()),
         ChangeNotifierProvider<AuthProvider>(
-            create: (context) => AuthProvider()),
+            create: (context) => AuthProvider(dataProvider)),
         ChangeNotifierProvider<ValidationProvider>(
             create: (context) => ValidationProvider()),
+        ChangeNotifierProvider<DataProvider>(
+            create: (context) => DataProvider()),
       ],
       child: ScreenUtilInit(
           designSize: const Size(390, 844),
