@@ -29,7 +29,7 @@ class _SplashState extends State<Splash> {
           // ignore: use_build_context_synchronously
           ? Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (BuildContext context) {
-              return const SignInScreen();
+              return SignInScreen();
             }))
           :
           // ignore: use_build_context_synchronously

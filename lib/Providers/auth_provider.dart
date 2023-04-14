@@ -35,7 +35,7 @@ class AuthProvider extends ChangeNotifier {
         if (signedUp!) {
           btnController.success();
           Future.delayed(const Duration(milliseconds: 200), () async {
-            AppRouter.pushWithReplacment(const SignInScreen());
+            AppRouter.pushWithReplacment(SignInScreen());
             confirmPassword.clear();
             fullName.clear();
             password.clear();
@@ -44,6 +44,8 @@ class AuthProvider extends ChangeNotifier {
           btnController.reset();
           AppRouter.showErrorSnackBar("Email Already Exists!");
         }
+      } else {
+        btnController.reset();
       }
     } else {
       AppRouter.showErrorSnackBar("No Internet Connection");
@@ -86,7 +88,7 @@ class AuthProvider extends ChangeNotifier {
       btnController.success();
       Future.delayed(const Duration(seconds: 1), () async {
         AppRouter.popAll();
-        AppRouter.pushWidget(const SignInScreen());
+        AppRouter.pushWidget(SignInScreen());
       });
     } else {
       Future.delayed(const Duration(seconds: 1), () async {
