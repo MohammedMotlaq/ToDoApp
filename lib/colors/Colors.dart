@@ -17,7 +17,7 @@ Map<String, Color> lightColors = {
 
 Map<String, Color> DarkColors = {
   "backgroundColor": const Color(0xFF000000),
-  "SplashBackgroundColor": const Color(0xFFffffff),
+  "SplashBackgroundColor": Color(0xFF000000),
   "textInputs": const Color(0x40FF4444),
   "text": const Color(0xFFFFFFFF),
   "buttonColor": const Color(0xFFFF4444),

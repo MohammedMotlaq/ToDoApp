@@ -17,7 +17,8 @@ class SearchContainer extends StatefulWidget {
 class _SearchContainerState extends State<SearchContainer> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<UIProvider>(builder: (context, UIprovider, x) {
+    return Consumer2<UIProvider, DataProvider>(
+        builder: (context, UIprovider, Dataprovider, x) {
       return Container(
         color: UIprovider.theme['backgroundColor'],
         padding: EdgeInsets.fromLTRB(24.w, 18.h, 24.w, 0),
@@ -28,11 +29,17 @@ class _SearchContainerState extends State<SearchContainer> {
                 height: 60.h,
                 margin: EdgeInsets.only(top: 30.h, bottom: 5.h),
                 decoration: BoxDecoration(
-                    // border:
-                    //     Border.all(color: const Color.fromRGBO(217, 217, 217, 1)),
                     color: UIprovider.theme['backgroundColor'],
                     borderRadius: BorderRadius.all(Radius.circular(8.r))),
                 child: TextFormField(
+                  controller: Dataprovider.searchInputController,
+                  onEditingComplete: () {
+                    Dataprovider.getSearchTasks();
+                  },
+                  textInputAction: TextInputAction.search,
+                  style: TextStyle(
+                    color: UIprovider.theme["text"],
+                  ),
                   decoration: InputDecoration(
                       focusColor: Colors.deepOrange,
                       focusedBorder: OutlineInputBorder(
@@ -57,9 +64,15 @@ class _SearchContainerState extends State<SearchContainer> {
                         child: SizedBox(
                           width: 24.w,
                           height: 24.h,
-                          child: Image.asset(
-                            "assets/icons/clear.png",
-                            fit: BoxFit.fill,
+                          child: InkWell(
+                            onTap: () {
+                              Dataprovider.searchInputController.clear();
+                              Dataprovider.clearSearchTasks();
+                            },
+                            child: Image.asset(
+                              "assets/icons/clear.png",
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       )),
@@ -70,12 +83,12 @@ class _SearchContainerState extends State<SearchContainer> {
                   height: MediaQuery.of(context).size.height - 181.h,
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
-                    itemCount: 10,
+                    itemCount: Dataprovider.searchTasks.length,
                     itemBuilder: (context, index) => TaskWidget(
                       index: index,
                       selectedIndex: -1,
                       changeSelectedIndex: () => {},
-                      task: Tasks(),
+                      task: Dataprovider.searchTasks[index],
                     ),
                   ),
                 ),

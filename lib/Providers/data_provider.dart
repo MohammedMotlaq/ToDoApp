@@ -8,13 +8,26 @@ import 'package:to_do_app/Router/App_Router.dart';
 import 'package:to_do_app/Views/Screens/Main_Screen.dart';
 
 class DataProvider extends ChangeNotifier {
-  List<Tasks> tasks = [
-    Tasks(title: "test", description: "test", isDone: false)
-  ];
-
-  getAllTasks({String searchQuery = ""}) async {
-    tasks = await DataHelper.dataHelper.getAllTasks(searchQuery);
+  List<Tasks> tasks = [];
+  List<Tasks> searchTasks = [];
+  TextEditingController searchInputController = TextEditingController();
+  getAllTasks() async {
+    tasks = await DataHelper.dataHelper.getAllTasks('');
     print(tasks.toString());
+    notifyListeners();
+  }
+
+  getSearchTasks() async {
+    print("getting tasks");
+    String searchQuery = searchInputController.text;
+    searchTasks = await DataHelper.dataHelper.getAllTasks(searchQuery);
+    print(searchTasks.toString());
+    notifyListeners();
+  }
+
+// Helper Methods
+  clearSearchTasks() {
+    searchTasks.clear();
     notifyListeners();
   }
 }

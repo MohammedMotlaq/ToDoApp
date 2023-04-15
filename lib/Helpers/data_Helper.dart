@@ -9,7 +9,6 @@ import 'package:to_do_app/Models/task_model.dart';
 class DataHelper {
   DataHelper._();
   static DataHelper dataHelper = DataHelper._();
-  List<Tasks> tasks = [];
   final tasksUri = Uri.https(Constants.todoApiHostName, '/tasks');
 
   getAllTasks(String searchQuery) async {
@@ -18,6 +17,7 @@ class DataHelper {
         tasksUri.replace(queryParameters: {"q": searchQuery});
     http.Response response = await http
         .get(tasksUriWithQuery, headers: {"Authorization": "Bearer $token"});
+    List<Tasks> tasks = [];
 
     if (response.statusCode == 200) {
       json.decode(response.body)["tasks"].forEach((v) {
