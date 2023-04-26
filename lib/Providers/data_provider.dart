@@ -21,6 +21,8 @@ class DataProvider extends ChangeNotifier {
 
   getAllTasks() async {
     tasks = await DataHelper.dataHelper.getAllTasks('');
+    print(tasks);
+    print(tasks.length);
     notifyListeners();
   }
 

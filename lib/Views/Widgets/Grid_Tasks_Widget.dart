@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Models/task_model.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
@@ -24,7 +25,7 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
         duration: Duration(milliseconds: 300),
         // padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 11.w),
         padding: EdgeInsets.only(top: 21.h, bottom: 7.h, left: 9.w, right: 12),
-
+        height: 180.h,
         margin: EdgeInsets.only(top: 23.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
@@ -55,12 +56,19 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: EdgeInsets.only(left: 8.w),
-                child: Text(
-                  widget.task.description ?? "Unknown",
-                  style: TextStyle(
-                      fontSize: 16.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300),
+                child: SizedBox(
+                  height: 50.h,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Text(
+                      widget.task.description ?? "Unknown",
+                      style: TextStyle(
+                          overflow: TextOverflow.fade,
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300),
+                    ),
+                  ),
                 ),
               ),
             ),

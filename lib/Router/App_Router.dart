@@ -33,9 +33,11 @@ class AppRouter {
     ScaffoldMessenger.of(navKey.currentContext!)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        behavior: SnackBarBehavior.floating,
         content: AwesomeSnackbarContent(
             title: title, message: message, contentType: ContentType.failure),
-        backgroundColor: Colors.transparent,
       ));
   }
 

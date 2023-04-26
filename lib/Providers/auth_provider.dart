@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:to_do_app/Helpers/Auth_Helper.dart';
 import 'package:to_do_app/Helpers/SP_Helper.dart';
@@ -72,7 +73,10 @@ class AuthProvider extends ChangeNotifier {
           await SPHelper.saveToken(user.token!);
           btnController.success();
           Future.delayed(const Duration(milliseconds: 200), () async {
-            dataProvider.getAllTasks();
+            AppRouter.pushWithReplacment(MainScreen());
+            Provider.of<DataProvider>(AppRouter.navKey.currentContext!,
+                    listen: false)
+                .getAllTasks();
           });
           email.clear();
           password.clear();
