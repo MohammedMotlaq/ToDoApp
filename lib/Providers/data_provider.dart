@@ -33,7 +33,7 @@ class DataProvider extends ChangeNotifier {
   addTask() async {
     if (addTaskKey.currentState!.validate()) {
       String title = taskTitleController.text;
-      String description = taskTitleController.text;
+      String description = taskDescriptionController.text;
       Tasks task = Tasks(title: title, description: description);
       bool status = await DataHelper.dataHelper.addTask(task);
       if (status) {
@@ -45,22 +45,23 @@ class DataProvider extends ChangeNotifier {
         addTaskController.error();
       }
     }
+    addTaskController.reset();
   }
 
   deleteTasks(Tasks task) async {
     bool status = await DataHelper.dataHelper.deleteTask(task);
     if (status) {
       await getAllTasks();
-      AppRouter.showSnackBar("Task Deleted Successfully");
+      AppRouter.showSnackBar("delete task", "Task Deleted Successfully");
     } else {
-      AppRouter.showErrorSnackBar("Something went Wrong");
+      AppRouter.showErrorSnackBar("Failed", "Something went wrong");
     }
   }
 
   makeDone(Tasks task) async {
     bool status = await DataHelper.dataHelper.makeDone(task);
     if (!status) {
-      AppRouter.showErrorSnackBar("Something went wrong");
+      AppRouter.showErrorSnackBar("Failed", "Something went wrong");
     }
     getAllTasks();
   }

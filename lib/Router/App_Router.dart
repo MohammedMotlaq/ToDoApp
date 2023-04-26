@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -28,20 +29,28 @@ class AppRouter {
     pushWidget(showAlertDialog(message));
   }
 
-  static showErrorSnackBar(String message) {
-    ScaffoldMessenger.of(navKey.currentContext!).showSnackBar(SnackBar(
-      content: Text(message),
-      backgroundColor: Colors.red,
-    ));
+  static showErrorSnackBar(String title, String message) {
+    ScaffoldMessenger.of(navKey.currentContext!)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(
+        content: AwesomeSnackbarContent(
+            title: title, message: message, contentType: ContentType.failure),
+        backgroundColor: Colors.transparent,
+      ));
   }
 
   static popAll() {
     Navigator.of(navKey.currentContext!).popUntil((route) => route.isFirst);
   }
 
-  static showSnackBar(String message) =>
-      ScaffoldMessenger.of(navKey.currentContext!).showSnackBar(SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.green,
-      ));
+  static showSnackBar(String title, String message) =>
+      ScaffoldMessenger.of(navKey.currentContext!)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          behavior: SnackBarBehavior.floating,
+          content: AwesomeSnackbarContent(
+              title: title, message: message, contentType: ContentType.success),
+        ));
 }

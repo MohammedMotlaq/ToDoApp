@@ -44,13 +44,15 @@ class AuthProvider extends ChangeNotifier {
           });
         } else {
           btnController.reset();
-          AppRouter.showErrorSnackBar("Email Already Exists!");
+          AppRouter.showErrorSnackBar(
+              "Sign up failed", "Email Already Exists!");
         }
       } else {
         btnController.reset();
       }
     } else {
-      AppRouter.showErrorSnackBar("No Internet Connection");
+      AppRouter.showErrorSnackBar(
+          "No Internet", "Failed to connect to the server");
     }
   }
 
@@ -61,7 +63,8 @@ class AuthProvider extends ChangeNotifier {
         var user =
             await AuthHelper.authHelper.signIn(email.text, password.text);
         if (user == null) {
-          AppRouter.showErrorSnackBar("Wrong Password or Email");
+          AppRouter.showErrorSnackBar(
+              "Login failed", "Wrong Password or Email");
           btnController.reset();
         } else {
           await SPHelper.saveEmail(user.email!);
@@ -79,7 +82,8 @@ class AuthProvider extends ChangeNotifier {
         btnController.reset();
       }
     } else {
-      AppRouter.showErrorSnackBar("No Internet Connection");
+      AppRouter.showErrorSnackBar(
+          "No Internet", "Failed to connect to the server");
     }
   }
 

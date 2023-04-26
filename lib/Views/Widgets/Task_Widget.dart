@@ -53,11 +53,17 @@ class _TaskWidgetState extends State<TaskWidget> {
                   setState(() {});
                   Dataprovider.makeDone(widget.task);
                 },
-                child: ImageIcon(
-                  const AssetImage("assets/icons/check-square.png"),
-                  color: Colors.white,
-                  size: 35.h,
-                ),
+                child: widget.task.isDone!
+                    ? Icon(
+                        Icons.check_box_rounded,
+                        size: 32.w,
+                        color: Colors.white,
+                      )
+                    : Icon(
+                        Icons.check_box_outline_blank,
+                        size: 32.w,
+                        color: Colors.white,
+                      ),
               ),
               SizedBox(
                 width: 14.w,
@@ -85,12 +91,10 @@ class _TaskWidgetState extends State<TaskWidget> {
                       child: Text(
                         widget.task.description ?? "Unknown",
                         style: TextStyle(
-                            fontSize: 16.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w300,
-                            overflow: widget.selectedIndex == widget.index
-                                ? TextOverflow.clip
-                                : TextOverflow.ellipsis),
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300,
+                        ),
                       ),
                     ),
                   ),

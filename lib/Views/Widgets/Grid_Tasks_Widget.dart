@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Models/task_model.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
+import 'package:to_do_app/Providers/data_provider.dart';
 
 import '../../colors/Colors.dart';
 
@@ -17,15 +18,19 @@ class GridTaskWidget extends StatefulWidget {
 class _GridTaskWidgetState extends State<GridTaskWidget> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<UIProvider>(builder: (context, UIprovider, x) {
-      return Container(
+    return Consumer2<UIProvider, DataProvider>(
+        builder: (context, UIprovider, Dataprovider, x) {
+      return AnimatedContainer(
+        duration: Duration(milliseconds: 300),
         // padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 11.w),
         padding: EdgeInsets.only(top: 21.h, bottom: 7.h, left: 9.w, right: 12),
 
         margin: EdgeInsets.only(top: 23.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
-          color: UIprovider.theme['taskCartBackground'],
+          color: widget.task.isDone!
+              ? Colors.green
+              : UIprovider.theme['taskCartBackground'],
         ),
         child: Column(
           children: [
@@ -34,6 +39,9 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
               child: Text(
                 widget.task.title ?? "Unknown",
                 style: TextStyle(
+                    decoration: widget.task.isDone!
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
                     fontSize: 24.sp,
                     fontWeight: FontWeight.bold,
                     fontFamily: "Roboto",
@@ -60,15 +68,31 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                ImageIcon(
-                  const AssetImage("assets/icons/check-square.png"),
-                  color: Colors.white,
-                  size: 28.h,
+                InkWell(
+                  onTap: () {
+                    widget.task.isDone = !widget.task.isDone!;
+                    setState(() {});
+                    Dataprovider.makeDone(widget.task);
+                  },
+                  child: widget.task.isDone!
+                      ? Icon(
+                          Icons.check_box_rounded,
+                          size: 32.w,
+                          color: Colors.white,
+                        )
+                      : Icon(
+                          Icons.check_box_outline_blank,
+                          size: 32.w,
+                          color: Colors.white,
+                        ),
                 ),
-                ImageIcon(
-                  const AssetImage("assets/icons/trash.png"),
-                  color: Colors.white,
-                  size: 28.h,
+                InkWell(
+                  onTap: () => Dataprovider.deleteTasks(widget.task),
+                  child: ImageIcon(
+                    const AssetImage("assets/icons/trash.png"),
+                    color: Colors.white,
+                    size: 28.h,
+                  ),
                 ),
               ],
             )
