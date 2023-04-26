@@ -45,6 +45,16 @@ class DataHelper {
     return false;
   }
 
+  deleteTask(Tasks task) async {
+    String token = SPHelper.getToken();
+    Uri deleteTaskWithQuery =
+        tasksUri.replace(queryParameters: {"taskId": task.id});
+    http.Response response = await http.delete(deleteTaskWithQuery,
+        headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode >= 200 && response.statusCode < 300) return true;
+    return false;
+  }
+
   makeDone(Tasks task) async {
     String token = SPHelper.getToken();
     Uri makeDoneWithQuery =

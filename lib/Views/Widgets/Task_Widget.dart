@@ -98,10 +98,13 @@ class _TaskWidgetState extends State<TaskWidget> {
                 ],
               ),
               const Spacer(),
-              ImageIcon(
-                const AssetImage("assets/icons/trash.png"),
-                color: Colors.white,
-                size: 35.h,
+              InkWell(
+                onTap: () => Dataprovider.deleteTasks(widget.task),
+                child: ImageIcon(
+                  const AssetImage("assets/icons/trash.png"),
+                  color: Colors.white,
+                  size: 35.h,
+                ),
               )
             ],
           ),

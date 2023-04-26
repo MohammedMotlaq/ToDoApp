@@ -47,6 +47,16 @@ class DataProvider extends ChangeNotifier {
     }
   }
 
+  deleteTasks(Tasks task) async {
+    bool status = await DataHelper.dataHelper.deleteTask(task);
+    if (status) {
+      await getAllTasks();
+      AppRouter.showSnackBar("Task Deleted Successfully");
+    } else {
+      AppRouter.showErrorSnackBar("Something went Wrong");
+    }
+  }
+
   makeDone(Tasks task) async {
     bool status = await DataHelper.dataHelper.makeDone(task);
     if (!status) {
