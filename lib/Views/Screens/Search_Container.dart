@@ -83,7 +83,7 @@ class _SearchContainerState extends State<SearchContainer> {
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height - 181.h,
                   child: Dataprovider.searchTasks.isEmpty
-                      ? Lottie.asset('assets/lottie/not-found.json')
+                      ? UIprovider.notFoundJsonPath
                       : ListView.builder(
                           padding: EdgeInsets.zero,
                           itemCount: Dataprovider.searchTasks.length,

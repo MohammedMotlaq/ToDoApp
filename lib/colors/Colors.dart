@@ -20,7 +20,7 @@ Map<String, Color> DarkColors = {
   "SplashBackgroundColor": Color(0xFF000000),
   "textInputs": const Color(0x40FF4444),
   "text": const Color(0xFFFFFFFF),
-  "buttonColor": const Color(0xFFFF4444),
+  "buttonColor": Color(0xFFFF4444),
   "hintText": const Color(0xffFFEFEF),
   "taskCartBackground": const Color(0xFF2B2727),
   "addTaskButton": const Color(0xffBF0000),
