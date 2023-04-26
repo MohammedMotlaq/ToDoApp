@@ -10,7 +10,7 @@ class DataHelper {
   DataHelper._();
   static DataHelper dataHelper = DataHelper._();
   final tasksUri = Uri.https(Constants.todoApiHostName, '/tasks');
-
+  final makeDoneURI = Uri.https(Constants.todoApiHostName, "/task-status");
   getAllTasks(String searchQuery) async {
     String token = await SPHelper.getToken();
     Uri tasksUriWithQuery =
@@ -32,8 +32,6 @@ class DataHelper {
 
   addTask(Tasks task) async {
     String token = SPHelper.getToken();
-    Map taskMap = {"title": task.title, "description": task.description};
-    print(task.title);
     http.Response response = await http.post(tasksUri, headers: {
       "Authorization": "Bearer $token",
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -41,12 +39,20 @@ class DataHelper {
       "title": task.title!,
       "description": task.description!
     });
-
-    print(response.body);
-    print(response.statusCode);
     if (response.statusCode == 200) {
       return true;
     }
+    return false;
+  }
+
+  makeDone(Tasks task) async {
+    String token = SPHelper.getToken();
+    Uri makeDoneWithQuery =
+        makeDoneURI.replace(queryParameters: {"taskId": task.id});
+    http.Response response = await http
+        .post(makeDoneWithQuery, headers: {'Authorization': "Bearer $token"});
+    print(response.body);
+    if (response.statusCode == 200) return true;
     return false;
   }
 }

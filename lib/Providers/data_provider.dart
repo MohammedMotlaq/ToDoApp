@@ -47,6 +47,14 @@ class DataProvider extends ChangeNotifier {
     }
   }
 
+  makeDone(Tasks task) async {
+    bool status = await DataHelper.dataHelper.makeDone(task);
+    if (!status) {
+      AppRouter.showErrorSnackBar("Something went wrong");
+    }
+    getAllTasks();
+  }
+
 // Helper Methods
   clearSearchTasks() {
     searchTasks.clear();

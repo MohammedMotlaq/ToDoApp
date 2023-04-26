@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
+import 'package:to_do_app/Providers/data_provider.dart';
 
 import '../../Models/task_model.dart';
 import '../../colors/Colors.dart';
@@ -25,7 +26,8 @@ class TaskWidget extends StatefulWidget {
 class _TaskWidgetState extends State<TaskWidget> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<UIProvider>(builder: (context, UIprovider, x) {
+    return Consumer2<UIProvider, DataProvider>(
+        builder: (context, UIprovider, Dataprovider, x) {
       return GestureDetector(
         onDoubleTap: () {
           widget.selectedIndex == widget.index
@@ -38,15 +40,24 @@ class _TaskWidgetState extends State<TaskWidget> {
           margin: EdgeInsets.only(top: 23.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.r),
-            color: UIprovider.theme['taskCartBackground'],
+            color: widget.task.isDone!
+                ? Colors.green
+                : UIprovider.theme['taskCartBackground'],
           ),
           duration: Duration(milliseconds: 300),
           child: Row(
             children: [
-              ImageIcon(
-                const AssetImage("assets/icons/check-square.png"),
-                color: Colors.white,
-                size: 35.h,
+              InkWell(
+                onTap: () {
+                  widget.task.isDone = !widget.task.isDone!;
+                  setState(() {});
+                  Dataprovider.makeDone(widget.task);
+                },
+                child: ImageIcon(
+                  const AssetImage("assets/icons/check-square.png"),
+                  color: Colors.white,
+                  size: 35.h,
+                ),
               ),
               SizedBox(
                 width: 14.w,
@@ -57,6 +68,9 @@ class _TaskWidgetState extends State<TaskWidget> {
                   Text(
                     widget.task.title ?? "Unknown",
                     style: TextStyle(
+                        decoration: widget.task.isDone!
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
                         fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
                         fontFamily: "Roboto",
