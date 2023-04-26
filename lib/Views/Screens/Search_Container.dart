@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Models/task_model.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
@@ -81,16 +82,18 @@ class _SearchContainerState extends State<SearchContainer> {
               SingleChildScrollView(
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height - 181.h,
-                  child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    itemCount: Dataprovider.searchTasks.length,
-                    itemBuilder: (context, index) => TaskWidget(
-                      index: index,
-                      selectedIndex: -1,
-                      changeSelectedIndex: () => {},
-                      task: Dataprovider.searchTasks[index],
-                    ),
-                  ),
+                  child: Dataprovider.searchTasks.isEmpty
+                      ? Lottie.asset('assets/lottie/not-found.json')
+                      : ListView.builder(
+                          padding: EdgeInsets.zero,
+                          itemCount: Dataprovider.searchTasks.length,
+                          itemBuilder: (context, index) => TaskWidget(
+                            index: index,
+                            selectedIndex: -1,
+                            changeSelectedIndex: () => {},
+                            task: Dataprovider.searchTasks[index],
+                          ),
+                        ),
                 ),
               )
             ],
