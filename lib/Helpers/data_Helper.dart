@@ -9,8 +9,8 @@ import 'package:to_do_app/Router/App_Router.dart';
 class DataHelper {
   DataHelper._();
   static DataHelper dataHelper = DataHelper._();
-  final tasksUri = Uri.https(Constants.todoApiHostName, '/tasks');
-  final makeDoneURI = Uri.https(Constants.todoApiHostName, "/task-status");
+  final tasksUri = Uri.http(Constants.todoApiHostName, '/tasks');
+  final makeDoneURI = Uri.http(Constants.todoApiHostName, "/task-status");
   getAllTasks(String searchQuery) async {
     String token = await SPHelper.getToken();
     Uri tasksUriWithQuery =

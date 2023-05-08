@@ -34,7 +34,7 @@ class _SearchContainerState extends State<SearchContainer> {
                     borderRadius: BorderRadius.all(Radius.circular(8.r))),
                 child: TextFormField(
                   controller: Dataprovider.searchInputController,
-                  onEditingComplete: () {
+                  onChanged: (value) {
                     Dataprovider.getSearchTasks();
                   },
                   textInputAction: TextInputAction.search,

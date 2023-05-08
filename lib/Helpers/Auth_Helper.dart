@@ -8,8 +8,8 @@ import 'package:to_do_app/Models/User_Model.dart';
 class AuthHelper {
   AuthHelper._();
   static AuthHelper authHelper = AuthHelper._();
-  final signUpUri = Uri.https(Constants.todoApiHostName, '/auth/signup');
-  final signInUri = Uri.https(Constants.todoApiHostName, '/auth/login');
+  final signUpUri = Uri.http(Constants.todoApiHostName, '/auth/signup');
+  final signInUri = Uri.http(Constants.todoApiHostName, '/auth/login');
 
   signUp(String email, String name, String password,
       String confirmPassword) async {
@@ -40,6 +40,8 @@ class AuthHelper {
     //final mapData = json.decode(data);
 
     //Regular Post
+    print(signInUri.port);
+
     http.Response response = await http
         .post(signInUri, body: {'email': email, 'password': password});
     if (response.statusCode == 200) {
