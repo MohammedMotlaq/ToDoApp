@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Views/Screens/Search_Container.dart';
-import 'package:to_do_app/Views/Widgets/Add_Task_Widget.dart';
+import 'package:to_do_app/Views/Widgets/add_task_widget.dart';
 import 'package:to_do_app/colors/Colors.dart';
 
 import 'Home_Screen.dart';

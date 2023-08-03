@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/Helpers/SP_Helper.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Providers/data_provider.dart';
 import 'package:to_do_app/Views/Widgets/Grid_Tasks_Widget.dart';
 import 'package:to_do_app/Views/Widgets/Task_Widget.dart';
-import 'package:to_do_app/colors/Colors.dart' as color;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Providers/data_provider.dart';
 
-import '../../Router/App_Router.dart';
-import '../Screens/Main_Screen.dart';
 
 class AddTaskWidget extends StatefulWidget {
   const AddTaskWidget({super.key});
@@ -18,16 +14,28 @@ class AddTaskWidget extends StatefulWidget {
 }
 
 class _AddTaskWidgetState extends State<AddTaskWidget> {
-  final _focus2 = FocusNode();
+  final FocusNode _focus2 = FocusNode();
+
+  @override
+  void initState() {
+    _focus2.requestFocus();
+    super.initState();
+  }
+  @override
+  void dispose() {
+    _focus2.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer2<DataProvider, UIProvider>(
-        builder: (context, Dataprovider, UIprovider, x) {
+        builder: (context, dataProvider, uiProvider, x) {
       return Form(
-        key: Dataprovider.addTaskKey,
+        key: dataProvider.addTaskKey,
         child: Container(
           width: 390.w,
-          height: 312.h,
+          height:685.h,
           padding: EdgeInsets.only(
             top: 10.h,
             left: 16.w,
@@ -60,45 +68,46 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Todo Title",
+                        "ToDo Title",
                         style: TextStyle(
                             fontFamily: "inter",
-                            fontSize: 15.sp,
+                            fontSize: 17.sp,
                             color: const Color.fromRGBO(82, 82, 92, 1)),
                       ),
                       SizedBox(
                         height: 11.77.h,
                       ),
-                      Container(
-                        height: 60.h,
-                        width: 302.54.w,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: const Color.fromRGBO(217, 217, 217, 1),
-                                width: 2.w),
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.r))),
+                      SizedBox(
+                        height: 80.h,
+                        width: 358.w,
                         child: TextFormField(
-                          controller: Dataprovider.taskTitleController,
+                          focusNode: _focus2,
+                          controller: dataProvider.taskTitleController,
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "this field is required";
+                            if (value!.isEmpty) {
+                              return "Required *";
                             }
+                            return null;
                           },
                           onFieldSubmitted: (_) {
                             FocusScope.of(context).requestFocus(_focus2);
                           },
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 18.h, horizontal: 15.w),
-                            border: InputBorder.none,
-                            hintText: "Todo title......",
+                            contentPadding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 15.w),
+                            hintText: "Todo title ...",
                             hintStyle: TextStyle(
-                                fontSize: 17.sp,
-                                color: const Color.fromRGBO(158, 158, 158, 1),
-                                fontFamily: "Inter"),
+                              fontSize: 17.sp,
+                              color: const Color.fromRGBO(158, 158, 158, 1),
+                              fontFamily: "Inter"
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                              borderSide: const BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromRGBO(158, 158, 158, 1),
+                              )
+                            ),
                           ),
                         ),
                       ),
@@ -109,41 +118,39 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                         "Task",
                         style: TextStyle(
                             fontFamily: "inter",
-                            fontSize: 15.sp,
+                            fontSize: 17.sp,
                             color: const Color.fromRGBO(82, 82, 92, 1)),
                       ),
                       SizedBox(
                         height: 11.85.h,
                       ),
-                      Container(
-                        height: 60.h,
-                        width: 302.54.w,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: const Color.fromRGBO(217, 217, 217, 1),
-                                width: 2.w),
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.r))),
+                      SizedBox(
+                        height: 80.h,
+                        width: 358.w,
                         child: TextFormField(
-                          focusNode: _focus2,
-                          controller: Dataprovider.taskDescriptionController,
+                          controller: dataProvider.taskDescriptionController,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "this field is required";
+                              return "Required *";
                             }
+                            return null;
                           },
-                          onFieldSubmitted: (value) =>
-                              Dataprovider.addTaskController.start(),
+                          onFieldSubmitted: (value) => dataProvider.addTaskController.start(),
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 18.h, horizontal: 15.w),
-                            border: InputBorder.none,
-                            hintText: "Write anything in your mind",
+                            contentPadding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 15.w),
+                            hintText: "Write anything in your mind ...",
                             hintStyle: TextStyle(
-                                fontSize: 17.sp,
-                                color: const Color.fromRGBO(158, 158, 158, 1),
-                                fontFamily: "Inter"),
+                              fontSize: 17.sp,
+                              color: const Color.fromRGBO(158, 158, 158, 1),
+                              fontFamily: "Inter"
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                              borderSide: const BorderSide(
+                                style: BorderStyle.solid,
+                                color: Color.fromRGBO(158, 158, 158, 1),
+                              )
+                            ),
                           ),
                         ),
                       ),
@@ -154,16 +161,16 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                         height: 57.21.h,
                         width: double.infinity,
                         child: RoundedLoadingButton(
-                          successColor: UIprovider.theme["buttonColor"],
+                          successColor: uiProvider.theme["buttonColor"],
                           loaderStrokeWidth: 4,
                           loaderSize: 34.w,
                           borderRadius: 10.r,
-                          color: UIprovider.theme["buttonColor"],
+                          color: uiProvider.theme["buttonColor"],
                           valueColor: Colors.white,
                           height: 72.h,
                           width: 340.w,
-                          controller: Dataprovider.addTaskController,
-                          onPressed: () => Dataprovider.addTask(),
+                          controller: dataProvider.addTaskController,
+                          onPressed: () => dataProvider.addTask(),
                           child: Text(
                             "Save",
                             textAlign: TextAlign.left,
