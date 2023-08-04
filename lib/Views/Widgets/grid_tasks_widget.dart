@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Models/task_model.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Providers/data_provider.dart';
 
-import '../../colors/Colors.dart';
-
 class GridTaskWidget extends StatefulWidget {
-  Tasks task;
-  GridTaskWidget({super.key, required this.task});
+  final Tasks task;
+  const GridTaskWidget({super.key, required this.task});
 
   @override
   State<GridTaskWidget> createState() => _GridTaskWidgetState();
@@ -20,18 +17,17 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
   @override
   Widget build(BuildContext context) {
     return Consumer2<UIProvider, DataProvider>(
-        builder: (context, UIprovider, Dataprovider, x) {
+        builder: (context, uiProvider, dataProvider, x) {
       return AnimatedContainer(
-        duration: Duration(milliseconds: 300),
-        // padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 11.w),
-        padding: EdgeInsets.only(top: 21.h, bottom: 7.h, left: 9.w, right: 12),
+        duration: const Duration(milliseconds: 300),
+        padding: EdgeInsets.only(top: 10.h, bottom: 7.h, left: 9.w, right: 12),
         height: 180.h,
         margin: EdgeInsets.only(top: 23.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
           color: widget.task.isDone!
               ? Colors.green
-              : UIprovider.theme['taskCartBackground'],
+              : uiProvider.theme['taskCartBackground'],
         ),
         child: Column(
           children: [
@@ -80,7 +76,7 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
                   onTap: () {
                     widget.task.isDone = !widget.task.isDone!;
                     setState(() {});
-                    Dataprovider.makeDone(widget.task);
+                    dataProvider.makeDone(widget.task);
                   },
                   child: widget.task.isDone!
                       ? Icon(
@@ -95,7 +91,7 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
                         ),
                 ),
                 InkWell(
-                  onTap: () => Dataprovider.deleteTasks(widget.task),
+                  onTap: () => dataProvider.deleteTasks(widget.task),
                   child: ImageIcon(
                     const AssetImage("assets/icons/trash.png"),
                     color: Colors.white,

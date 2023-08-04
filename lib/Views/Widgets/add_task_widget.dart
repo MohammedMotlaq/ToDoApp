@@ -89,9 +89,6 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                             }
                             return null;
                           },
-                          onFieldSubmitted: (_) {
-                            FocusScope.of(context).requestFocus(_focus2);
-                          },
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 15.w),
@@ -158,13 +155,13 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                         height: 25.4.h,
                       ),
                       SizedBox(
-                        height: 57.21.h,
+                        height: 60.h,
                         width: double.infinity,
                         child: RoundedLoadingButton(
                           successColor: uiProvider.theme["buttonColor"],
                           loaderStrokeWidth: 4,
                           loaderSize: 34.w,
-                          borderRadius: 10.r,
+                          borderRadius: 50.r,
                           color: uiProvider.theme["buttonColor"],
                           valueColor: Colors.white,
                           height: 72.h,

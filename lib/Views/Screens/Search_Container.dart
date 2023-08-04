@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:to_do_app/Models/task_model.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Providers/data_provider.dart';
-import 'package:to_do_app/Views/Widgets/Task_Widget.dart';
+import 'package:to_do_app/Views/Widgets/task_widget.dart';
 import 'package:to_do_app/colors/Colors.dart';
 
 class SearchContainer extends StatefulWidget {

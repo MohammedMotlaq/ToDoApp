@@ -3,21 +3,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Providers/data_provider.dart';
-
 import '../../Models/task_model.dart';
-import '../../colors/Colors.dart';
 
 class TaskWidget extends StatefulWidget {
-  Tasks task;
-  int index, selectedIndex;
-  Function changeSelectedIndex;
+  final Tasks task;
+  final int index, selectedIndex;
+  final Function changeSelectedIndex;
 
-  TaskWidget(
-      {super.key,
-      required this.index,
-      required this.selectedIndex,
-      required this.changeSelectedIndex,
-      required this.task});
+  const TaskWidget({
+    super.key,
+    required this.index,
+    required this.selectedIndex,
+    required this.changeSelectedIndex,
+    required this.task
+  });
 
   @override
   State<TaskWidget> createState() => _TaskWidgetState();
@@ -27,7 +26,7 @@ class _TaskWidgetState extends State<TaskWidget> {
   @override
   Widget build(BuildContext context) {
     return Consumer2<UIProvider, DataProvider>(
-        builder: (context, UIprovider, Dataprovider, x) {
+        builder: (context, uiProvider, dataProvider, x) {
       return GestureDetector(
         onDoubleTap: () {
           widget.selectedIndex == widget.index
@@ -35,23 +34,23 @@ class _TaskWidgetState extends State<TaskWidget> {
               : widget.changeSelectedIndex(widget.index);
         },
         child: AnimatedContainer(
-          padding: EdgeInsets.symmetric(vertical: 13.h, horizontal: 11.w),
+          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 11.w),
           height: widget.selectedIndex == widget.index ? 200.h : 100.h,
           margin: EdgeInsets.only(top: 23.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.r),
             color: widget.task.isDone!
                 ? Colors.green
-                : UIprovider.theme['taskCartBackground'],
+                : uiProvider.theme['taskCartBackground'],
           ),
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           child: Row(
             children: [
               InkWell(
                 onTap: () {
                   widget.task.isDone = !widget.task.isDone!;
                   setState(() {});
-                  Dataprovider.makeDone(widget.task);
+                  dataProvider.makeDone(widget.task);
                 },
                 child: widget.task.isDone!
                     ? Icon(
@@ -103,7 +102,7 @@ class _TaskWidgetState extends State<TaskWidget> {
               ),
               const Spacer(),
               InkWell(
-                onTap: () => Dataprovider.deleteTasks(widget.task),
+                onTap: () => dataProvider.deleteTasks(widget.task),
                 child: ImageIcon(
                   const AssetImage("assets/icons/trash.png"),
                   color: Colors.white,
