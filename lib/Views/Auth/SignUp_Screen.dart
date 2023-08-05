@@ -89,7 +89,15 @@ class SignUpScreen extends StatelessWidget {
                           textInputAction: TextInputAction.next,
                           controller: authProvider.fullName,
                           validator: validationProvider.requiredField,
+                          cursorColor: Colors.deepOrange,
                           decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  borderSide: const BorderSide(
+                                      width: 2,
+                                      color: Colors.deepOrange
+                                  )
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
                                     const BorderSide(style: BorderStyle.none),
@@ -121,7 +129,15 @@ class SignUpScreen extends StatelessWidget {
                           textInputAction: TextInputAction.next,
                           controller: authProvider.email,
                           validator: validationProvider.emailValidator,
+                          cursorColor: Colors.deepOrange,
                           decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  borderSide: const BorderSide(
+                                      width: 2,
+                                      color: Colors.deepOrange
+                                  )
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
                                     const BorderSide(style: BorderStyle.none),
@@ -154,7 +170,15 @@ class SignUpScreen extends StatelessWidget {
                           controller: authProvider.password,
                           validator: validationProvider.requiredField,
                           obscureText: true,
+                          cursorColor: Colors.deepOrange,
                           decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  borderSide: const BorderSide(
+                                      width: 2,
+                                      color: Colors.deepOrange
+                                  )
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
                                     const BorderSide(style: BorderStyle.none),
@@ -186,7 +210,15 @@ class SignUpScreen extends StatelessWidget {
                           controller: authProvider.confirmPassword,
                           validator: validationProvider.requiredField,
                           obscureText: true,
+                          cursorColor: Colors.deepOrange,
                           decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  borderSide: const BorderSide(
+                                      width: 2,
+                                      color: Colors.deepOrange
+                                  )
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
                                     const BorderSide(style: BorderStyle.none),

@@ -40,8 +40,10 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               navigatorKey: AppRouter.navKey,
               theme: ThemeData(
+                focusColor: Colors.deepOrange,
+                primaryColor: Colors.deepOrange,
                 primarySwatch: Colors.deepOrange,
-                //useMaterial3: true
+                useMaterial3: true
               ),
               home: const Splash(),
               debugShowCheckedModeBanner: false,
