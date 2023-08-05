@@ -4,21 +4,17 @@ import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:to_do_app/Helpers/Auth_Helper.dart';
 import 'package:to_do_app/Helpers/SP_Helper.dart';
-import 'package:to_do_app/Helpers/data_Helper.dart';
-import 'package:to_do_app/Models/User_Model.dart';
 import 'package:to_do_app/Providers/data_provider.dart';
 import 'package:to_do_app/Router/App_Router.dart';
 import 'package:to_do_app/Views/Auth/SignIn_Screen.dart';
-import 'package:to_do_app/Views/Auth/SignUp_Screen.dart';
 import 'package:to_do_app/Views/Screens/Main_Screen.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool? signedUp;
 
-  RoundedLoadingButtonController btnController =
-      new RoundedLoadingButtonController();
-  GlobalKey<FormState> signUpKey = GlobalKey();
-  GlobalKey<FormState> signInKey = GlobalKey();
+  RoundedLoadingButtonController btnController = RoundedLoadingButtonController();
+  final GlobalKey<FormState> signUpKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> signInKey = GlobalKey<FormState>();
   TextEditingController fullName = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();

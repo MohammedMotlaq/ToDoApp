@@ -8,8 +8,6 @@ import 'package:to_do_app/Providers/validation_provider.dart';
 import 'package:to_do_app/Router/App_Router.dart';
 import 'package:to_do_app/Views/Auth/SignIn_Screen.dart';
 
-import '../../colors/Colors.dart';
-
 class SignUpScreen extends StatelessWidget {
   final _focus2 = FocusNode();
   final _focus3 = FocusNode();
@@ -19,13 +17,13 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer3<UIProvider, AuthProvider, ValidationProvider>(
-        builder: (context, UIprovider, Authprovider, Validationprovider, x) {
+        builder: (context, uiProvider, authProvider, validationProvider, x) {
       return WillPopScope(
         onWillPop: () async {
           return false;
         },
         child: Scaffold(
-          backgroundColor: UIprovider.theme['backgroundColor'],
+          backgroundColor: uiProvider.theme['backgroundColor'],
           body: Stack(children: [
             Container(
               width: 200.w,
@@ -37,11 +35,11 @@ class SignUpScreen extends StatelessWidget {
                         "assets/images/UpperBackground.png",
                       ))),
             ),
-            Container(
+            SizedBox(
               width: 390.w,
               height: 844.h,
               child: Form(
-                key: Authprovider.signUpKey,
+                key: authProvider.signUpKey,
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
@@ -49,12 +47,12 @@ class SignUpScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 153.h,
+                        height: 100.h,
                       ),
                       Text(
                         "Welcome User!",
                         style: TextStyle(
-                            color: UIprovider.theme['text'],
+                            color: uiProvider.theme['text'],
                             fontFamily: 'Poppins',
                             fontSize: 18.sp,
                             fontWeight: FontWeight.bold),
@@ -65,7 +63,7 @@ class SignUpScreen extends StatelessWidget {
                       Text(
                         "Lets Get Signup to add tasks",
                         style: TextStyle(
-                          color: UIprovider.theme['text'],
+                          color: uiProvider.theme['text'],
                           fontFamily: 'Poppins',
                           fontSize: 18.sp,
                         ),
@@ -86,11 +84,11 @@ class SignUpScreen extends StatelessWidget {
                             FocusScope.of(context).requestFocus(_focus2);
                           },
                           style: TextStyle(
-                            color: UIprovider.theme["text"],
+                            color: uiProvider.theme["text"],
                           ),
                           textInputAction: TextInputAction.next,
-                          controller: Authprovider.fullName,
-                          validator: Validationprovider.requiredField,
+                          controller: authProvider.fullName,
+                          validator: validationProvider.requiredField,
                           decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
@@ -98,10 +96,10 @@ class SignUpScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20.r),
                               ),
                               filled: true,
-                              fillColor: UIprovider.theme['textInputs'],
+                              fillColor: uiProvider.theme['textInputs'],
                               hintText: "Enter your full name",
                               hintStyle: TextStyle(
-                                color: UIprovider.theme['hintText']!
+                                color: uiProvider.theme['hintText']!
                                     .withOpacity(0.3),
                                 fontSize: 18.sp,
                               ),
@@ -118,11 +116,11 @@ class SignUpScreen extends StatelessWidget {
                             FocusScope.of(context).requestFocus(_focus3);
                           },
                           style: TextStyle(
-                            color: UIprovider.theme["text"],
+                            color: uiProvider.theme["text"],
                           ),
                           textInputAction: TextInputAction.next,
-                          controller: Authprovider.email,
-                          validator: Validationprovider.emailValidator,
+                          controller: authProvider.email,
+                          validator: validationProvider.emailValidator,
                           decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
@@ -130,10 +128,10 @@ class SignUpScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20.r),
                               ),
                               filled: true,
-                              fillColor: UIprovider.theme['textInputs'],
+                              fillColor: uiProvider.theme['textInputs'],
                               hintText: "Enter your Email",
                               hintStyle: TextStyle(
-                                color: UIprovider.theme['hintText']!
+                                color: uiProvider.theme['hintText']!
                                     .withOpacity(0.3),
                                 fontSize: 18.sp,
                               ),
@@ -150,11 +148,12 @@ class SignUpScreen extends StatelessWidget {
                             FocusScope.of(context).requestFocus(_focus4);
                           },
                           style: TextStyle(
-                            color: UIprovider.theme["text"],
+                            color: uiProvider.theme["text"],
                           ),
                           textInputAction: TextInputAction.next,
-                          controller: Authprovider.password,
-                          validator: Validationprovider.requiredField,
+                          controller: authProvider.password,
+                          validator: validationProvider.requiredField,
+                          obscureText: true,
                           decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
@@ -162,10 +161,10 @@ class SignUpScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20.r),
                               ),
                               filled: true,
-                              fillColor: UIprovider.theme['textInputs'],
+                              fillColor: uiProvider.theme['textInputs'],
                               hintText: "Enter your Password",
                               hintStyle: TextStyle(
-                                color: UIprovider.theme['hintText']!
+                                color: uiProvider.theme['hintText']!
                                     .withOpacity(0.3),
                                 fontSize: 18.sp,
                               ),
@@ -179,13 +178,14 @@ class SignUpScreen extends StatelessWidget {
                         child: TextFormField(
                           focusNode: _focus4,
                           onFieldSubmitted: (_) {
-                            Authprovider.btnController.start();
+                            authProvider.btnController.start();
                           },
                           style: TextStyle(
-                            color: UIprovider.theme["text"],
+                            color: uiProvider.theme["text"],
                           ),
-                          controller: Authprovider.confirmPassword,
-                          validator: Validationprovider.requiredField,
+                          controller: authProvider.confirmPassword,
+                          validator: validationProvider.requiredField,
+                          obscureText: true,
                           decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
@@ -193,10 +193,10 @@ class SignUpScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20.r),
                               ),
                               filled: true,
-                              fillColor: UIprovider.theme['textInputs'],
-                              hintText: "Confirm your Pasword",
+                              fillColor: uiProvider.theme['textInputs'],
+                              hintText: "Confirm your Password",
                               hintStyle: TextStyle(
-                                color: UIprovider.theme['hintText']!
+                                color: uiProvider.theme['hintText']!
                                     .withOpacity(0.3),
                                 fontSize: 18.sp,
                               ),
@@ -208,16 +208,16 @@ class SignUpScreen extends StatelessWidget {
                         height: 49.h,
                       ),
                       RoundedLoadingButton(
-                        successColor: UIprovider.theme["buttonColor"],
+                        successColor: uiProvider.theme["buttonColor"],
                         loaderStrokeWidth: 4,
                         loaderSize: 34.w,
                         borderRadius: 40.r,
-                        color: UIprovider.theme["buttonColor"],
+                        color: uiProvider.theme["buttonColor"],
                         valueColor: Colors.white,
                         height: 72.h,
                         width: 340.w,
-                        controller: Authprovider.btnController,
-                        onPressed: () => Authprovider.signUp(),
+                        controller: authProvider.btnController,
+                        onPressed: () => authProvider.signUp(),
                         child: Text(
                           "Sign Up",
                           textAlign: TextAlign.left,
@@ -238,14 +238,14 @@ class SignUpScreen extends StatelessWidget {
                             "Already have an account?",
                             style: TextStyle(
                               fontSize: 18.sp,
-                              color: UIprovider.theme['text'],
+                              color: uiProvider.theme['text'],
                               fontFamily: 'Poppins',
                             ),
                           ),
                           InkWell(
                             onTap: () {
                               AppRouter.pushWithReplacment(
-                                SignInScreen(),
+                                const SignInScreen(),
                               );
                             },
                             child: Text(
@@ -253,14 +253,14 @@ class SignUpScreen extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 fontFamily: 'Poppins',
-                                color: UIprovider.theme['buttonColor'],
+                                color: uiProvider.theme['buttonColor'],
                               ),
                             ),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: 50.h,
+                        height: 350.h,
                       ),
                     ],
                   ),
