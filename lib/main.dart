@@ -41,9 +41,11 @@ class MyApp extends StatelessWidget {
               navigatorKey: AppRouter.navKey,
               theme: ThemeData(
                 primarySwatch: Colors.deepOrange,
+                useMaterial3: true
               ),
               home: const Splash(),
               debugShowCheckedModeBanner: false,
+
             );
           }),
     );

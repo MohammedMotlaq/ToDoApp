@@ -20,7 +20,7 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
         builder: (context, uiProvider, dataProvider, x) {
       return AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        padding: EdgeInsets.only(top: 10.h, bottom: 7.h, left: 9.w, right: 12),
+        padding: EdgeInsets.only(top: 7.h, bottom: 7.h, left: 9.w, right: 12),
         height: 180.h,
         margin: EdgeInsets.only(top: 23.h),
         decoration: BoxDecoration(
@@ -33,16 +33,22 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: Text(
-                widget.task.title ?? "Unknown",
-                style: TextStyle(
-                    decoration: widget.task.isDone!
-                        ? TextDecoration.lineThrough
-                        : TextDecoration.none,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Roboto",
-                    color: Colors.white),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SizedBox(
+                  height: 35.h,
+                  child: Text(
+                    widget.task.title ?? "Unknown",
+                    style: TextStyle(
+                        decoration: widget.task.isDone!
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Roboto",
+                        color: Colors.white),
+                  ),
+                ),
               ),
             ),
             SizedBox(
@@ -92,11 +98,12 @@ class _GridTaskWidgetState extends State<GridTaskWidget> {
                 ),
                 InkWell(
                   onTap: () => dataProvider.deleteTasks(widget.task),
-                  child: ImageIcon(
-                    const AssetImage("assets/icons/trash.png"),
-                    color: Colors.white,
-                    size: 28.h,
-                  ),
+                  // child: ImageIcon(
+                  //   const AssetImage("assets/icons/trash.png"),
+                  //   color: Colors.white,
+                  //   size: 28.h,
+                  // ),
+                  child: Icon(Icons.delete_forever_outlined,size: 35.h,color: Colors.white,),
                 ),
               ],
             )

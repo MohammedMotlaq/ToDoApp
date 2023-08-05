@@ -35,7 +35,7 @@ class _TaskWidgetState extends State<TaskWidget> {
         },
         child: AnimatedContainer(
           padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 11.w),
-          height: widget.selectedIndex == widget.index ? 200.h : 100.h,
+          height: widget.selectedIndex == widget.index ? 220.h : 140.h,
           margin: EdgeInsets.only(top: 23.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.r),
@@ -47,10 +47,11 @@ class _TaskWidgetState extends State<TaskWidget> {
           child: Row(
             children: [
               InkWell(
-                onTap: () {
+
+                onTap: ()async {
+                  await dataProvider.makeDone(widget.task);
                   widget.task.isDone = !widget.task.isDone!;
                   setState(() {});
-                  dataProvider.makeDone(widget.task);
                 },
                 child: widget.task.isDone!
                     ? Icon(
@@ -70,16 +71,25 @@ class _TaskWidgetState extends State<TaskWidget> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.task.title ?? "Unknown",
-                    style: TextStyle(
-                        decoration: widget.task.isDone!
+                  SizedBox(
+                    width: 230.w,
+                    height: 40.h,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text(
+                        widget.task.title ?? "Unknown",
+                        style: TextStyle(
+                          decoration: widget.task.isDone!
                             ? TextDecoration.lineThrough
                             : TextDecoration.none,
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Roboto",
-                        color: Colors.white),
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Roboto",
+                          color: Colors.white,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
                   ),
                   const Spacer(),
                   SizedBox(
@@ -103,11 +113,12 @@ class _TaskWidgetState extends State<TaskWidget> {
               const Spacer(),
               InkWell(
                 onTap: () => dataProvider.deleteTasks(widget.task),
-                child: ImageIcon(
-                  const AssetImage("assets/icons/trash.png"),
-                  color: Colors.white,
-                  size: 35.h,
-                ),
+                // child: ImageIcon(
+                //   const AssetImage("assets/icons/trash.png"),
+                //   color: Colors.white,
+                //   size: 35.h,
+                // ),
+                child: Icon(Icons.delete_forever_outlined,size: 35.h,color: Colors.white,),
               )
             ],
           ),

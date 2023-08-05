@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Views/Screens/Search_Container.dart';
 import 'package:to_do_app/Views/Widgets/add_task_widget.dart';
-import 'package:to_do_app/colors/Colors.dart';
-
 import 'Home_Screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -17,16 +15,16 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int index = 0;
-  bool _isBottomSheetVisible = false;
-  Widget bodyWidget = HomeScreen();
+  Widget bodyWidget = const HomeScreen();
   @override
   Widget build(BuildContext context) {
-    return Consumer<UIProvider>(builder: (context, UIprovider, x) {
+    return Consumer<UIProvider>(builder: (context, uiProvider, x) {
       return Scaffold(
-        backgroundColor: UIprovider.theme['backgroundColor'],
+        backgroundColor: uiProvider.theme['backgroundColor'],
         body: bodyWidget,
         floatingActionButton: FloatingActionButton(
-          backgroundColor: UIprovider.theme['addTaskButton'],
+          shape: const StadiumBorder(),
+          backgroundColor: uiProvider.theme['addTaskButton'],
           elevation: 0,
           highlightElevation: 0,
           onPressed: () {
@@ -76,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
             if (i == 0) {
               index = 0;
               setState(() {
-                bodyWidget = HomeScreen();
+                bodyWidget = const HomeScreen();
               });
             } else if (i == 1) {
               index = 1;
@@ -104,9 +102,9 @@ class _MainScreenState extends State<MainScreen> {
           ],
           selectedLabelStyle:
               TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
-          backgroundColor: UIprovider.theme['backgroundColor'],
-          selectedItemColor: UIprovider.theme['selectedColor'],
-          unselectedItemColor: UIprovider.theme['unselectedColor'],
+          backgroundColor: uiProvider.theme['backgroundColor'],
+          selectedItemColor: uiProvider.theme['selectedColor'],
+          unselectedItemColor: uiProvider.theme['unselectedColor'],
         ),
       );
     });

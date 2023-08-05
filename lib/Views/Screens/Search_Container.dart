@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/Models/task_model.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Providers/data_provider.dart';
 import 'package:to_do_app/Views/Widgets/task_widget.dart';
-import 'package:to_do_app/colors/Colors.dart';
 
 class SearchContainer extends StatefulWidget {
   const SearchContainer({super.key});
@@ -19,9 +16,9 @@ class _SearchContainerState extends State<SearchContainer> {
   @override
   Widget build(BuildContext context) {
     return Consumer2<UIProvider, DataProvider>(
-        builder: (context, UIprovider, Dataprovider, x) {
+        builder: (context, uiProvider, dataProvider, x) {
       return Container(
-        color: UIprovider.theme['backgroundColor'],
+        color: uiProvider.theme['backgroundColor'],
         padding: EdgeInsets.fromLTRB(24.w, 18.h, 24.w, 0),
         child: SingleChildScrollView(
           child: Column(
@@ -30,16 +27,16 @@ class _SearchContainerState extends State<SearchContainer> {
                 height: 60.h,
                 margin: EdgeInsets.only(top: 30.h, bottom: 5.h),
                 decoration: BoxDecoration(
-                    color: UIprovider.theme['backgroundColor'],
+                    color: uiProvider.theme['backgroundColor'],
                     borderRadius: BorderRadius.all(Radius.circular(8.r))),
                 child: TextFormField(
-                  controller: Dataprovider.searchInputController,
+                  controller: dataProvider.searchInputController,
                   onChanged: (value) {
-                    Dataprovider.getSearchTasks();
+                    dataProvider.getSearchTasks();
                   },
                   textInputAction: TextInputAction.search,
                   style: TextStyle(
-                    color: UIprovider.theme["text"],
+                    color: uiProvider.theme["text"],
                   ),
                   decoration: InputDecoration(
                       focusColor: Colors.deepOrange,
@@ -50,11 +47,11 @@ class _SearchContainerState extends State<SearchContainer> {
                           vertical: 18.h, horizontal: 15.w),
                       prefixIcon: Icon(
                         Icons.search,
-                        color: UIprovider.theme['iconsColor'],
+                        color: uiProvider.theme['iconsColor'],
                       ),
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: const Color.fromRGBO(217, 217, 217, 1))),
+                              color: Color.fromRGBO(217, 217, 217, 1))),
                       hintText: "Search",
                       hintStyle: TextStyle(
                           fontSize: 17.sp,
@@ -67,8 +64,8 @@ class _SearchContainerState extends State<SearchContainer> {
                           height: 24.h,
                           child: InkWell(
                             onTap: () {
-                              Dataprovider.searchInputController.clear();
-                              Dataprovider.clearSearchTasks();
+                              dataProvider.searchInputController.clear();
+                              dataProvider.clearSearchTasks();
                             },
                             child: Image.asset(
                               "assets/icons/clear.png",
@@ -82,16 +79,16 @@ class _SearchContainerState extends State<SearchContainer> {
               SingleChildScrollView(
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height - 181.h,
-                  child: Dataprovider.searchTasks.isEmpty
-                      ? UIprovider.notFoundJsonPath
+                  child: dataProvider.searchTasks.isEmpty
+                      ? uiProvider.notFoundJsonPath
                       : ListView.builder(
                           padding: EdgeInsets.zero,
-                          itemCount: Dataprovider.searchTasks.length,
+                          itemCount: dataProvider.searchTasks.length,
                           itemBuilder: (context, index) => TaskWidget(
                             index: index,
                             selectedIndex: -1,
                             changeSelectedIndex: () => {},
-                            task: Dataprovider.searchTasks[index],
+                            task: dataProvider.searchTasks[index],
                           ),
                         ),
                 ),

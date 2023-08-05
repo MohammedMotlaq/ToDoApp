@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/Providers/UI_Provider.dart';
 import 'package:to_do_app/Providers/data_provider.dart';
@@ -24,9 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer2<UIProvider, DataProvider>(
-        builder: (context, UIprovider, Dataprovider, x) {
+        builder: (context, uiProvider, dataProvider, x) {
       return Container(
-        color: UIprovider.theme['backgroundColor'],
+        color: uiProvider.theme['backgroundColor'],
         padding: EdgeInsets.only(top: 34.h, left: 24.w, right: 24.w),
         child: SingleChildScrollView(
           child: Column(
@@ -35,24 +36,24 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 children: [
                   IconButton(
-                      iconSize: 32.sp,
-                      onPressed: () {
-                        setState(() {
-                          grid = !grid;
-                        });
-                      },
-                      icon: grid
-                          ? Icon(
-                              Icons.grid_view_rounded,
-                              color: UIprovider.theme["someText"],
-                            )
-                          : Icon(
-                              Icons.list,
-                              color: UIprovider.theme["someText"],
-                            )),
-                  SizedBox(
-                    width: 35.w,
-                  ),
+                    iconSize: 32.sp,
+                    onPressed: () {
+                      setState(() {
+                        grid = !grid;
+                      });
+                    },
+                    icon: grid
+                      ? Icon(
+                        Icons.grid_view_rounded,
+                        color: const Color(0xFFFF4444),
+                        size: 32.sp,
+                      )
+                      : Icon(
+                        Icons.menu_rounded,
+                        color: const Color(0xFFFF4444),
+                        size: 32.sp,
+                      )),
+                  const Spacer(),
                   Text(
                     "My Tasks",
                     style: TextStyle(
@@ -75,11 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Spacer(),
                   IconButton(
                       onPressed: () {
-                        UIprovider.changeTheme();
+                        uiProvider.changeTheme();
                       },
                       icon: Icon(
-                        UIprovider.themeIcon,
-                        color: Color(0xFFFF4444),
+                        uiProvider.themeIcon,
+                        color: const Color(0xFFFF4444),
                         size: 32.sp,
                       )),
                 ],
@@ -92,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                   "Whats on your mind?",
                   style: TextStyle(
-                    color: UIprovider.theme['someText'],
+                    color: uiProvider.theme['someText'],
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w600,
                     fontFamily: "Roboto",
@@ -105,22 +106,22 @@ class _HomeScreenState extends State<HomeScreen> {
               SingleChildScrollView(
                   child: SizedBox(
                       height: MediaQuery.of(context).size.height - 230.h,
-                      child: (Dataprovider.tasks == [])
-                          ? Center(child: CircularProgressIndicator())
+                      child: (dataProvider.tasks.isEmpty)
+                          ? Center(child: Lottie.asset('assets/lottie/task_done.json'))
                           : (grid)
                               ? ListView.builder(
                                   padding: EdgeInsets.zero,
-                                  itemCount: Dataprovider.tasks.length,
+                                  itemCount: dataProvider.tasks.length,
                                   itemBuilder: (context, index) => TaskWidget(
                                     index: index,
                                     selectedIndex: selectedIndex,
                                     changeSelectedIndex: changeSelectedIndex,
-                                    task: Dataprovider.tasks[index],
+                                    task: dataProvider.tasks[index],
                                   ),
                                 )
                               : GridView.builder(
                                   padding: EdgeInsets.zero,
-                                  itemCount: Dataprovider.tasks.length,
+                                  itemCount: dataProvider.tasks.length,
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
@@ -130,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     return GridTaskWidget(
-                                      task: Dataprovider.tasks[index],
+                                      task: dataProvider.tasks[index],
                                     );
                                   },
                                 )))
